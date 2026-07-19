@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center text-success mb-4">
+        🌿 Fertilizer Recommendation
+    </h2>
+    <div class="card shadow">
+        <div class="card-body">
+            <form method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Select Crop</label>
+                    <select class="form-select" name="crop" required>
+                        <option value="">Choose Crop</option>
+                        <option>Wheat</option>
+                        <option>Rice</option>
+                        <option>Cotton</option>
+                        <option>Maize</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Select Soil Type</label>
+                    <select class="form-select" name="soil" required>
+                        <option value="">Choose Soil</option>
+                        <option>Clay</option>
+                        <option>Loamy</option>
+                        <option>Sandy</option>
+                        <option>Black Soil</option>
+                        <option>Red Soil</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success">
+                    Get Recommendation
+                </button>
+            </form>
+        </div>
+    </div>
+    {% if recommendation %}
+    <div class="card mt-4 shadow border-success">
+        <div class="card-header bg-success text-white">
+            Recommendation Result
+        </div>
+        <div class="card-body">
+            <h4 class="text-success">
+                {{ recommendation }}
+            </h4>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

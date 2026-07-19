@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}Soil Analysis{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="text-success text-center mb-4">
+        🌱 Soil Health Analysis
+    </h2>
+
+    <div class="card shadow p-4">
+
+        <form method="POST">
+
+            <div class="mb-3">
+                <label class="form-label">Soil Type</label>
+                <select class="form-select" name="soil_type" required>
+                    <option value="">Select Soil Type</option>
+                    <option value="Loamy">Loamy</option>
+                    <option value="Clay">Clay</option>
+                    <option value="Sandy">Sandy</option>
+                    <option value="Black Soil">Black Soil</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">pH Value</label>
+                <input type="number"
+                       class="form-control"
+                       step="0.1"
+                       name="ph"
+                       required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Nitrogen (N)</label>
+                <input type="number"
+                       class="form-control"
+                       name="nitrogen"
+                       required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Phosphorus (P)</label>
+                <input type="number"
+                       class="form-control"
+                       name="phosphorus"
+                       required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Potassium (K)</label>
+                <input type="number"
+                       class="form-control"
+                       name="potassium"
+                       required>
+            </div>
+
+            <button class="btn btn-success w-100">
+                Analyze Soil
+            </button>
+
+        </form>
+
+    </div>
+
+    {% if result %}
+
+    <div class="card shadow mt-4">
+
+        <div class="card-header bg-success text-white">
+            <h4>Analysis Result</h4>
+        </div>
+
+        <div class="card-body">
+
+            <h5>🌾 Soil Type</h5>
+            <p>{{ result.soil_type }}</p>
+
+            <h5>💚 Soil Health</h5>
+            <p>{{ result.health }}</p>
+
+            <h5>🧪 pH Status</h5>
+            <p>{{ result.ph_status }}</p>
+
+            <h5>🌿 Fertilizer Recommendation</h5>
+
+            <ul>
+                {% for item in result.recommendation %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

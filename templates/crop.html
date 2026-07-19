@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-success text-center mb-4">Crop Management</h2>
+
+    <div class="card shadow p-4">
+        <form action="{{ url_for('add_crop') }}" method="POST">
+
+            <div class="mb-3">
+                <label>Farmer</label>
+                <select name="farmer_id" class="form-control" required>
+                    {% for farmer in farmers %}
+                    <option value="{{ farmer.id }}">{{ farmer.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label>Crop Name</label>
+                <input type="text" name="crop_name" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label>Season</label>
+                <input type="text" name="season" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label>Area (Acres)</label>
+                <input type="number" step="0.01" name="area" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label>Production (kg)</label>
+                <input type="number" step="0.01" name="production" class="form-control" required>
+            </div>
+
+            <button class="btn btn-success">Save Crop</button>
+
+        </form>
+    </div>
+</div>
+{% endblock %}

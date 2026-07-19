@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Pest & Disease Diagnosis{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2 class="text-center text-success mb-4">
+        🌿 Pest & Disease Diagnosis
+    </h2>
+
+    <div class="card shadow p-4">
+
+        <form method="POST">
+
+            <div class="mb-3">
+                <label class="form-label">Crop</label>
+
+                <select class="form-select" name="crop" required>
+                    <option>Rice</option>
+                    <option>Wheat</option>
+                    <option>Cotton</option>
+                    <option>Maize</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Symptom</label>
+
+                <select class="form-select" name="symptom" required>
+                    <option>Yellow Leaves</option>
+                    <option>Brown Spots</option>
+                    <option>Leaf Curl</option>
+                </select>
+            </div>
+
+            <button class="btn btn-success w-100">
+                Diagnose
+            </button>
+
+        </form>
+
+    </div>
+
+    {% if result %}
+
+    <div class="card shadow mt-4">
+
+        <div class="card-header bg-success text-white">
+            Diagnosis Result
+        </div>
+
+        <div class="card-body">
+
+            <h4>🦠 Disease</h4>
+            <p>{{ result.disease }}</p>
+
+            <h4>💊 Treatment</h4>
+            <p>{{ result.treatment }}</p>
+
+            <h4>🌱 Prevention</h4>
+            <p>{{ result.prevention }}</p>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

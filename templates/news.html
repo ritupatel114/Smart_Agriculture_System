@@ -1,0 +1,62 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <h1 class="text-center text-success mb-5">
+        📰 Live Agriculture News
+    </h1>
+
+
+    <div class="row">
+
+        {% for item in articles %}
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="card shadow h-100">
+
+                {% if item.urlToImage %}
+                <img src="{{ item.urlToImage }}" 
+                     class="card-img-top"
+                     height="220"
+                     style="object-fit: cover;">
+                {% else %}
+                <img src="https://via.placeholder.com/400x220?text=No+Image"
+                     class="card-img-top"
+                     height="220">
+                {% endif %}
+
+
+                <div class="card-body">
+
+                    <h5 class="card-title fw-bold">
+                        {{ item.title }}
+                    </h5>
+
+            <p class="card-text">
+                {{ item.description[:120] if item.description else "No description available." }}...
+            </p>
+
+                    <a href="{{ item.url }}" 
+                       target="_blank"
+                       class="btn btn-success">
+                        Read More
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+
+    </div>
+
+</div>
+
+{% endblock %}

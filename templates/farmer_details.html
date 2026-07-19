@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-success text-white">
+            <h3>{{ farmer.name }}</h3>
+        </div>
+
+        <div class="card-body">
+
+            <p><strong>Village:</strong> {{ farmer.village }}</p>
+            <p><strong>Mobile:</strong> {{ farmer.mobile }}</p>
+            <p><strong>Land:</strong> {{ farmer.land }} Acres</p>
+
+            <hr>
+
+            <h4>Crops</h4>
+
+            {% if farmer.crops %}
+
+            <table class="table table-bordered">
+
+                <tr>
+                    <th>Crop</th>
+                    <th>Season</th>
+                    <th>Area</th>
+                </tr>
+
+                {% for crop in farmer.crops %}
+
+                <tr>
+                    <td>{{ crop.crop_name }}</td>
+                    <td>{{ crop.season }}</td>
+                    <td>{{ crop.area }}</td>
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+            {% else %}
+
+            <p>No crops added yet.</p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

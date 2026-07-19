@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+            <h3>🌦 Live Weather</h3>
+        </div>
+
+        <div class="card-body">
+
+            <form method="POST">
+
+                <div class="input-group mb-3">
+
+                    <input
+                        type="text"
+                        name="city"
+                        class="form-control"
+                        placeholder="Enter City Name"
+                        required>
+
+                    <button class="btn btn-primary">
+                        Search
+                    </button>
+
+                </div>
+
+            </form>
+
+            {% if weather %}
+
+            <div class="alert alert-success">
+
+                <h4>{{ weather.city }}</h4>
+
+                <p>🌡 Temperature : {{ weather.temperature }} °C</p>
+
+                <p>💧 Humidity : {{ weather.humidity }}%</p>
+
+                <p>🌬 Wind Speed : {{ weather.wind }} m/s</p>
+
+                <p>☁ Weather : {{ weather.condition }}</p>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+{% if error %}
+<div class="alert alert-danger">
+    {{ error }}
+</div>
+{% endif %}

@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2 class="mb-4 text-success">
+        👨‍🌾 Farmer Management
+    </h2>
+    
+
+   <a href="{{ url_for('add_farmer') }}"
+   class="btn btn-success px-4 py-2 shadow-sm rounded-pill mb-3">
+    <i class="fas fa-user-plus me-2"></i>
+    Add Farmer
+</a>
+    <div class="row mb-3">
+    <div class="col-md-6">
+
+        <form method="GET">
+            <div class="input-group">
+
+                <input
+                    type="text"
+                    name="search"
+                    class="form-control"
+                    placeholder="Search by Name, Village or Mobile..."
+                    value="{{ search }}">
+
+                <button type="submit" class="btn btn-success px-4">
+                    🔍 Search
+                </button>
+
+                <a href="{{ url_for('farmers') }}"
+                   class="btn btn-outline-secondary d-flex align-items-center justify-content-center px-4">
+                    🔄 Reset
+                </a>
+
+            </div>
+        </form>
+
+    </div>
+</div>
+    <table class="table table-bordered table-striped">
+        <thead class="table-success">
+            <thead class="table-success">
+<tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Village</th>
+    <th>Mobile</th>
+    <th>Land (Acres)</th>
+    <th>Actions</th>
+</tr>
+</thead>
+        </thead>
+        <tbody>
+        {% for farmer in farmers %}
+          <tr>
+    <td>{{ farmer.id }}</td>
+    <td>{{ farmer.name }}</td>
+    <td>{{ farmer.village }}</td>
+    <td>{{ farmer.mobile }}</td>
+    <td>{{ farmer.land }}</td>
+    <td>
+        <a href="{{ url_for('farmer_details', id=farmer.id) }}"
+           class="btn btn-info btn-sm">
+            View
+        </a>
+        <a href="{{ url_for('edit_farmer', id=farmer.id) }}"
+   class="btn btn-warning btn-sm">
+    Edit
+</a>
+<a href="{{ url_for('delete_farmer', id=farmer.id) }}"
+   class="btn btn-danger btn-sm"
+   onclick="return confirm('Are you sure you want to delete this farmer?');">
+    Delete
+</a>
+    </td>
+</tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

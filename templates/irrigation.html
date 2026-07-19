@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}Irrigation Calculator{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2 class="text-center text-primary mb-4">
+        💧 Irrigation Water Calculator
+    </h2>
+
+    <div class="card shadow p-4">
+
+        <form method="POST">
+
+            <div class="mb-3">
+                <label class="form-label">Crop</label>
+
+                <select class="form-select" name="crop" required>
+                    <option value="">Select Crop</option>
+                    <option>Rice</option>
+                    <option>Wheat</option>
+                    <option>Cotton</option>
+                    <option>Maize</option>
+                    <option>Groundnut</option>
+                </select>
+
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Land Area (Acres)</label>
+
+                <input
+                    type="number"
+                    step="0.1"
+                    class="form-control"
+                    name="area"
+                    required>
+
+            </div>
+
+            <button class="btn btn-primary w-100">
+                Calculate Water Requirement
+            </button>
+
+        </form>
+
+    </div>
+
+    {% if result %}
+
+    <div class="card shadow mt-4">
+
+        <div class="card-header bg-success text-white">
+            <h4>Calculation Result</h4>
+        </div>
+
+        <div class="card-body">
+
+            <p><strong>Crop:</strong> {{ result.crop }}</p>
+
+            <p><strong>Land Area:</strong> {{ result.area }} Acres</p>
+
+            <h4 class="text-primary">
+                💧 Estimated Water Requirement
+            </h4>
+
+            <h2 class="text-success">
+                {{ result.water }} Litres
+            </h2>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="card shadow-lg border-0 p-4">
+        <h2 class="text-success text-center mb-4">
+            🌿 AI Disease Detection Result
+        </h2>
+        <div class="row align-items-center">
+            <!-- Uploaded Image -->
+            <div class="col-md-5 text-center">
+                <img src="{{ url_for('uploaded_file', filename=image) }}"
+                     class="img-fluid rounded shadow"
+                     style="max-height:350px;"
+                     alt="Uploaded Leaf">
+            </div>
+            <!-- Prediction -->
+            <div class="col-md-7">
+                <h4>
+                    Disease:
+                    <span class="badge bg-danger">
+                        {{ disease }}
+                    </span>
+                </h4>
+                <br>
+                <h5>Confidence: {{ confidence }}%</h5>
+                <div class="progress mb-4" style="height:25px;">
+    <div class="progress-bar bg-success"
+         id="confidenceBar"
+         role="progressbar">
+        {{ confidence }}%
+    </div>
+</div>
+
+<script>
+document.getElementById("confidenceBar").style.width = "{{ confidence }}%";
+</script>
+
+
+                <h5 class="text-success">
+                    💊 Treatment
+                </h5>
+
+                <p>{{ treatment }}</p>
+
+                <h5 class="text-primary">
+                    🛡 Prevention
+                </h5>
+
+                <p>{{ prevention }}</p>
+
+                <a href="{{ url_for('disease_detection') }}"
+                   class="btn btn-success mt-3">
+
+                    Detect Another Image
+
+                </a>
+                <a href="{{ url_for(
+    'download_report',
+    disease=disease,
+    confidence=confidence,
+    treatment=treatment,
+    prevention=prevention
+) }}"
+class="btn btn-primary mt-3 ms-2">
+
+    📄 Download PDF Report
+
+</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

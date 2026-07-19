@@ -1,0 +1,226 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+     <div class="text-center mb-5">
+
+    <h1 class="display-5 fw-bold text-success">
+        🌱 Smart Agriculture Dashboard
+    </h1>
+
+    <p class="text-muted fs-5">
+        Welcome to your Agriculture Management System
+    </p>
+
+</div>
+
+    <!-- Statistics Cards -->
+    <div class="row">
+
+        <div class="col-md-3 mb-4">
+            <div class="card shadow border-0 bg-success text-white">
+                <div class="card-body text-center">
+                    <i class="fas fa-user-farmer fa-3x text-success mb-3"></i>
+                    <h5>Total Farmers</h5>
+                    <h1>{{ farmer_count }}</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card shadow border-0 bg-primary text-white">
+                <div class="card-body text-center">
+                    <i class="fas fa-seedling fa-3x text-primary mb-3"></i>
+                    <h5>Total Crops</h5>
+                    <h1>{{ crop_count }}</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card shadow border-0 bg-warning text-dark">
+                <div class="card-body text-center">
+                    <i class="fas fa-envelope fa-3x text-warning mb-3"></i>
+                    <h5>Messages</h5>
+                    <h1>{{ contact_count }}</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card shadow border-0 bg-danger text-white">
+                <div class="card-body text-center">
+                    <h5>Admins</h5>
+                    <i class="fas fa-user-shield fa-3x text-danger mb-3"></i>
+                    <h1>{{ admin_count }}</h1>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Charts -->
+    <div class="row">
+
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    Farmer Growth
+                </div>
+                <div class="card-body">
+                    <canvas id="farmerChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    Crop Distribution
+                </div>
+                <div class="card-body">
+                    <canvas id="cropChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Recent Farmers -->
+    <div class="card shadow mb-4">
+
+        <div class="card-header bg-success text-white">
+            Recent Farmers
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered table-hover">
+
+                <thead class="table-success">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Village</th>
+                        <th>Mobile</th>
+                        <th>Land</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for farmer in recent_farmers %}
+
+                    <tr>
+                        <td>{{ farmer.id }}</td>
+                        <td>{{ farmer.name }}</td>
+                        <td>{{ farmer.village }}</td>
+                        <td>{{ farmer.mobile }}</td>
+                        <td>{{ farmer.land }}</td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- Recent Contacts -->
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+            Recent Contact Messages
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered table-hover">
+
+                <thead class="table-primary">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Subject</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for contact in recent_contacts %}
+
+                    <tr>
+                        <td>{{ contact.name }}</td>
+                        <td>{{ contact.email }}</td>
+                        <td>{{ contact.subject }}</td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Chart JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+new Chart(document.getElementById("farmerChart"), {
+
+    type: "line",
+
+    data: {
+
+        labels: ["Jan","Feb","Mar","Apr","May","Jun"],
+
+        datasets: [{
+
+            label: "Farmers",
+
+            data: [5,10,15,20,25,30],
+
+            borderWidth:2,
+
+            fill:false
+
+        }]
+
+    }
+
+});
+
+new Chart(document.getElementById("cropChart"), {
+
+    type:"pie",
+
+    data:{
+
+        labels:["Wheat","Rice","Cotton","Maize"],
+
+        datasets:[{
+
+            data:[30,20,25,25]
+
+        }]
+
+    }
+
+});
+
+</script>
+
+{% endblock %}

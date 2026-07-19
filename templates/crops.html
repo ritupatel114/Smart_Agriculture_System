@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+<div class="d-flex justify-content-between">
+
+<h2>🌾 Crop Management</h2>
+
+<a href="{{ url_for('add_crop') }}" class="btn btn-success">
++ Add Crop
+</a>
+
+</div>
+
+<table class="table table-bordered mt-4">
+
+<thead class="table-success">
+
+<tr>
+
+<th>ID</th>
+<th>Crop Name</th>
+<th>Season</th>
+<th>Area</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for crop in crops %}
+
+<tr>
+
+<td>{{ crop.id }}</td>
+<td>{{ crop.crop_name }}</td>
+<td>{{ crop.season }}</td>
+<td>{{ crop.area }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+{% endblock %}
