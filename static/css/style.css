@@ -1,40 +1,71 @@
 /* ================= HERO ================= */
 
-.hero-section{
-
-    padding-top:80px;
-
-    padding-bottom:80px;
-
+.hero-section h1{
+    font-size: clamp(2.5rem,8vw,4.8rem);
+    font-weight:800;
+    line-height:1.1;
+    word-break: break-word;
 }
-
 .hero-image{
-
     transition:0.7s;
+}
+.row{
+    margin-left:0;
+    margin-right:0;
+}
+.hero-card{
+    width:100%;
+}
+
+.hero-card img{
+    width:100%;
+    height:auto;
+}
+@media(max-width:768px){
+
+.btn-success,
+.btn-outline-success{
+
+    width:100%;
+    margin-bottom:10px;
 
 }
 
+}
+.container{
+    overflow:hidden;
+}
 .hero-image:hover{
-
     transform:scale(1.04);
-
 }
-
 .hero-section{
     background:linear-gradient(to right,#f8fff8,#ffffff);
     padding:100px 0;
 }
-
 .hero-title{
-    font-size: 4rem;
-    line-height: 1.1;
+    font-size: clamp(2.5rem, 10vw, 5rem);
+    word-break: break-word;
 }
 @media (max-width:768px){
     .hero-title{
         font-size: 2.2rem;
     }
 }
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.container,
+.container-fluid,
+.row {
+    max-width: 100%;
+}
 
 /* ================= STATS ================= */
 
@@ -57,203 +88,117 @@
 /* ================= BUTTON ================= */
 
 .btn{
-
     border-radius:30px;
-
 }
 /* ================= SERVICES ================= */
-
 .service-card{
-
     border-radius:20px;
-
     transition:.4s;
-
     cursor:pointer;
-
 }
-
 .service-card:hover{
-
     transform:translateY(-12px);
-
     box-shadow:0 20px 40px rgba(0,0,0,.18);
-
 }
-
 .service-icon{
-
     width:80px;
-
     height:80px;
-
     margin:auto;
-
     border-radius:50%;
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     font-size:36px;
-
 }
 /* ================= DASHBOARD ================= */
-
 .analytics-card{
-
     border-radius:20px;
-
     transition:.4s;
-
 }
-
 .analytics-card:hover{
-
     transform:translateY(-10px);
-
     background:#198754;
-
     color:white;
-
 }
-
 .card{
-
     border-radius:20px;
-
 }
-
 canvas{
-
     height:350px !important;
-
 }
 /* Base.html CSS */
 /* (Ye naya code neeche add karo) */
-
 body {
     font-family:'Poppins',sans-serif;
     background:#f8f9fa;
-}
-body{
-    overflow-x: hidden;
 }
 .navbar-nav .nav-link{
     font-size:15px;
     font-weight:500;
     margin-left:10px;
 }
-
 .dropdown-menu{
     border-radius:12px;
 }
-
 .dropdown-item{
     padding:10px 18px;
 }
-
 .dropdown-item:hover{
     background:#198754;
     color:white;
 }
-
 footer {
     font-size:15px;
 }
-
 footer a:hover {
     color:#ffc107 !important;
 }
-
 .btn {
     border-radius:30px;
 }
-
 .card {
     border-radius:20px;
 }
 /* ================= NEWS ================= */
-
 .news-card{
-
 transition:.4s;
-
 border-radius:20px;
-
 overflow:hidden;
-
 }
-
 .news-card:hover{
-
 transform:translateY(-10px);
-
 }
-
 .news-card img{
-
 height:220px;
-
 object-fit:cover;
-
 }
-
 /* ================= TESTIMONIAL ================= */
-
 .testimonial-card{
-
 transition:.4s;
-
 border-radius:20px;
-
 }
-
 .testimonial-card:hover{
-
 background:#198754;
-
 color:white;
-
 transform:translateY(-10px);
-
 }
 /* ================= FAQ ================= */
-
 .accordion-item{
-
     border-radius:15px;
-
     overflow:hidden;
-
     margin-bottom:15px;
-
 }
-
 /* ================= TOP BUTTON ================= */
-
 #topBtn{
-
 position:fixed;
-
 bottom:30px;
-
 right:30px;
-
 display:none;
-
 border-radius:50%;
-
 width:55px;
-
 height:55px;
-
 font-size:22px;
-
 z-index:999;
-
 }
 .hero-card{
     position:relative;
@@ -262,122 +207,88 @@ z-index:999;
     background:white;
     box-shadow:0 20px 45px rgba(0,0,0,.15);
 }
-
 .hero-card img{
-    height:500px;
     width:100%;
+    height:auto;
     object-fit:cover;
+    display:block;
 }
-
 .hero-stats{
-
     position:absolute;
-
+    left:0;
+    right:0;
     bottom:0;
-
-    width:100%;
-
     background:#0f5132;
-
     color:white;
-
     display:flex;
-
     justify-content:space-around;
-
-    padding:25px 10px;
-
+    align-items:center;
+    padding:15px 5px;
+    flex-wrap:wrap;
 }
-
 .hero-stats h3{
-
     font-weight:700;
-
     margin:0;
-
 }
-
 .hero-stats small{
-
     color:#d7f7e4;
-
 }
-
-.hero-section h1{
-
-    font-size:72px;
-
-    font-weight:800;
-
-    line-height:1.05;
-
-}
-
 .hero-section p{
-
     font-size:20px;
-
 }
-
 .btn-success{
-
     padding:15px 35px;
-
     border-radius:50px;
-
 }
-
 .btn-outline-success{
-
     padding:15px 35px;
-
     border-radius:50px;
-
 }
 .card-title{
     min-height: 60px;
 }
-
 .description{
     min-height: 90px;
     max-height: 90px;
     overflow: hidden;
 }
-
 .card-body{
     display: flex;
     flex-direction: column;
 }
-
 .card-body .btn{
     margin-top: auto;
 }
 /* ================= Sustainable Farming ================= */
-
 .sustainable-section{
     padding:80px 0;
 }
-
-.sustainable-section img{
-    border-radius:20px;
-    transition:0.5s;
-}
-
 .sustainable-section img:hover{
     transform:scale(1.03);
 }
-
 .sustainable-section .feature-box{
     transition:0.3s;
 }
-
 .sustainable-section .feature-box:hover{
     transform:translateY(-5px);
 }
 .sustainable-section img{
     transition:0.5s;
 }
-
 .sustainable-section img:hover{
     transform:scale(1.03);
+}
+/* ================= MOBILE FIX ================= */
+@media (max-width:768px){
+.hero-stats{
+    position:relative;
+}
+.hero-stats div{
+    width:50%;
+    text-align:center;
+    margin-bottom:12px;
+}
+.hero-section h1{
+    font-size:2.5rem !important;
+}
 }
