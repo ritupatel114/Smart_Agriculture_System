@@ -32,9 +32,6 @@
 }
 
 }
-.container{
-    overflow:hidden;
-}
 .hero-image:hover{
     transform:scale(1.04);
 }
