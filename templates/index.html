@@ -13,40 +13,53 @@
             <div class="col-lg-6">
 
                 <span class="badge bg-success fs-6 px-3 py-2 mb-3">
-                    🌱 AI Powered Smart Farming
+                    <span class="lang-en">🌱 AI Powered Smart Farming</span>
+                    <span class="lang-gu">🌱 AI આધારિત સ્માર્ટ ખેતી</span>
                 </span>
 
                 <h1 class="hero-title fw-bold">
 
-                    Smart Agriculture
-                    <span class="text-success">Management</span>
-                    System
+                    <span class="lang-en">Smart Agriculture <span class="text-success">Management</span> System</span>
+                    <span class="lang-gu">સ્માર્ટ કૃષિ <span class="text-success">વ્યવસ્થાપન</span> સિસ્ટમ</span>
 
                 </h1>
 
                 <p class="lead text-secondary mb-4">
 
-                Empowering farmers with AI-powered disease detection,
-                digital farmer management, crop monitoring,
-                agriculture analytics, weather updates, and live farming news.
+                    <span class="lang-en">
+                        Empowering farmers with AI-powered disease detection,
+                        digital farmer management, crop monitoring,
+                        agriculture analytics, weather updates, and live farming news.
+                    </span>
+
+                    <span class="lang-gu">
+                        AI આધારિત રોગની ઓળખ, ખેડૂત વ્યવસ્થાપન,
+                        પાકની માહિતી, જમીન વિશ્લેષણ,
+                        હવામાન અપડેટ અને કૃષિ સમાચાર દ્વારા ખેડૂતોને સરળ માહિતી આપવી.
+                    </span>
+
                 </p>
 
                 <div class="mb-4">
 
                     <span class="badge bg-light text-dark border p-2 m-1">
-                        🤖 AI Disease Detection
+                        <span class="lang-en">🤖 AI Disease Detection</span>
+                        <span class="lang-gu">🤖 પાકના રોગની ઓળખ</span>
                     </span>
 
                     <span class="badge bg-light text-dark border p-2 m-1">
-                        🌦 Live Weather
+                        <span class="lang-en">🌦 Live Weather</span>
+                        <span class="lang-gu">🌦 હવામાન માહિતી</span>
                     </span>
 
                     <span class="badge bg-light text-dark border p-2 m-1">
-                        🌱 Soil Analysis
+                        <span class="lang-en">🌱 Soil Analysis</span>
+                        <span class="lang-gu">🌱 જમીનનું વિશ્લેષણ</span>
                     </span>
 
                     <span class="badge bg-light text-dark border p-2 m-1">
-                        🌾 Recommendation
+                        <span class="lang-en">🌾 Recommendation</span>
+                        <span class="lang-gu">🌾 પાકની ભલામણ</span>
                     </span>
 
                 </div>
@@ -54,14 +67,16 @@
                 <a href="{{ url_for('farmers') }}"
                    class="btn btn-success btn-lg px-4 me-2">
 
-                    🚀Get Started
+                    <span class="lang-en">🚀 Get Started</span>
+                    <span class="lang-gu">🚀 શરૂઆત કરો</span>
 
                 </a>
 
                 <a href="{{ url_for('disease_detection') }}"
                    class="btn btn-outline-success btn-lg px-4">
 
-                    🤖AI Detection
+                    <span class="lang-en">🤖 AI Detection</span>
+                    <span class="lang-gu">🤖 રોગની ઓળખ</span>
 
                 </a>
 
@@ -69,40 +84,52 @@
 
             <div class="col-lg-6">
 
-    <div class="hero-card shadow-lg">
+                <div class="hero-card shadow-lg">
 
-        <img
-        src="https://images.unsplash.com/photo-1620200423727-8127f75d7f53?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        class="img-fluid hero-image w-100"
-        alt>
+                    <img
+                        src="https://images.unsplash.com/photo-1620200423727-8127f75d7f53?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        class="img-fluid hero-image w-100"
+                        alt="Smart Agriculture">
 
-        <div class="hero-stats">
+                    <div class="hero-stats">
 
-            <div>
-                <h3>{{ total_farmers }}</h3>
-                <small>Farmers</small>
+                        <div>
+                            <h3>{{ total_farmers }}</h3>
+                            <small>
+                                <span class="lang-en">Farmers</span>
+                                <span class="lang-gu">ખેડૂતો</span>
+                            </small>
+                        </div>
+
+                        <div>
+                            <h3>{{ total_crops }}</h3>
+                            <small>
+                                <span class="lang-en">Crops</span>
+                                <span class="lang-gu">પાક</span>
+                            </small>
+                        </div>
+
+                        <div>
+                            <h3>Live</h3>
+                            <small>
+                                <span class="lang-en">Weather</span>
+                                <span class="lang-gu">હવામાન</span>
+                            </small>
+                        </div>
+
+                        <div>
+                            <h3>AI</h3>
+                            <small>
+                                <span class="lang-en">Protection</span>
+                                <span class="lang-gu">રક્ષણ</span>
+                            </small>
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
-
-            <div>
-                <h3>{{total_crops}}</h3>
-                <small>Crops</small>
-            </div>
-
-            <div>
-                <h3>Live</h3>
-                <small>Weather</small>
-            </div>
-
-            <div>
-                <h3>AI</h3>
-                <small>Protection</small>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
 
         </div>
 
@@ -117,15 +144,18 @@
     <div class="text-center mb-5">
 
         <span class="badge bg-success px-3 py-2 fs-6">
-            Our Smart Features
+            <span class="lang-en">Our Smart Features</span>
+            <span class="lang-gu">અમારી સ્માર્ટ સુવિધાઓ</span>
         </span>
 
         <h2 class="display-5 fw-bold mt-3">
-            🌱 Smart Agriculture Services
+            <span class="lang-en">🌱 Smart Agriculture Services</span>
+            <span class="lang-gu">🌱 સ્માર્ટ કૃષિ સેવાઓ</span>
         </h2>
 
         <p class="text-muted">
-            Everything a modern farmer needs in one intelligent platform.
+            <span class="lang-en">Everything a modern farmer needs in one intelligent platform.</span>
+            <span class="lang-gu">આધુનિક ખેડૂત માટે જરૂરી માહિતી અને સુવિધાઓ એક જ પ્લેટફોર્મ પર.</span>
         </p>
 
     </div>
@@ -137,100 +167,141 @@
             <a href="{{ url_for('farmers') }}" class="text-decoration-none">
                 <div class="card service-card border-0 shadow h-100 text-center p-4">
                     <div class="service-icon bg-success text-white">👨‍🌾</div>
-                    <h4 class="mt-3">Farmer Management</h4>
+                    <h4 class="mt-3">
+                        <span class="lang-en">Farmer Management</span>
+                        <span class="lang-gu">ખેડૂત વ્યવસ્થાપન</span>
+                    </h4>
                     <p class="text-muted">
-                        Add, edit and manage farmer records efficiently.
+                        <span class="lang-en">Add, edit and manage farmer records efficiently.</span>
+                        <span class="lang-gu">ખેડૂતની માહિતી ઉમેરો, બદલો અને સરળતાથી સંભાળો.</span>
                     </p>
                 </div>
             </a>
         </div>
+
         <!-- Crop -->
         <div class="col-lg-3 col-md-6">
             <a href="{{ url_for('crops') }}" class="text-decoration-none">
                 <div class="card service-card border-0 shadow h-100 text-center p-4">
                     <div class="service-icon bg-warning">🌾</div>
-                    <h4 class="mt-3">Crop Management</h4>
+                    <h4 class="mt-3">
+                        <span class="lang-en">Crop Management</span>
+                        <span class="lang-gu">પાક વ્યવસ્થાપન</span>
+                    </h4>
                     <p class="text-muted">
-                        Store crop details, season and production.
+                        <span class="lang-en">Store crop details, season and production.</span>
+                        <span class="lang-gu">પાકની માહિતી, ઋતુ અને ઉત્પાદનની વિગતો સાચવો.</span>
                     </p>
                 </div>
             </a>
         </div>
+
         <!-- Weather -->
         <div class="col-lg-3 col-md-6">
             <a href="{{ url_for('weather') }}" class="text-decoration-none">
                 <div class="card service-card border-0 shadow h-100 text-center p-4">
                     <div class="service-icon bg-primary text-white">🌦</div>
-                    <h4 class="mt-3">Weather Forecast</h4>
+                    <h4 class="mt-3">
+                        <span class="lang-en">Weather Forecast</span>
+                        <span class="lang-gu">હવામાન આગાહી</span>
+                    </h4>
                     <p class="text-muted">
-                        Live weather information for better farming.
+                        <span class="lang-en">Live weather information for better farming.</span>
+                        <span class="lang-gu">સારી ખેતી માટે હાલની હવામાન માહિતી મેળવો.</span>
                     </p>
                 </div>
             </a>
         </div>
+
         <!-- AI -->
         <div class="col-lg-3 col-md-6">
             <a href="{{ url_for('disease_detection') }}" class="text-decoration-none">
                 <div class="card service-card border-0 shadow h-100 text-center p-4">
                     <div class="service-icon bg-danger text-white">🤖</div>
-                    <h4 class="mt-3">AI Disease Detection</h4>
+                    <h4 class="mt-3">
+                        <span class="lang-en">AI Disease Detection</span>
+                        <span class="lang-gu">AI દ્વારા રોગની ઓળખ</span>
+                    </h4>
                     <p class="text-muted">
-                        Upload a leaf image and detect diseases instantly.
+                        <span class="lang-en">Upload a leaf image and detect diseases instantly.</span>
+                        <span class="lang-gu">પાનની તસવીર અપલોડ કરો અને પાકનો રોગ ઓળખો.</span>
                     </p>
                 </div>
             </a>
         </div>
+
         <!-- Soil -->
         <div class="col-lg-3 col-md-6">
             <a href="{{ url_for('soil') }}" class="text-decoration-none">
                 <div class="card service-card border-0 shadow h-100 text-center p-4">
                     <div class="service-icon bg-success text-white">🌱</div>
-                    <h4 class="mt-3">Soil Analysis</h4>
+                    <h4 class="mt-3">
+                        <span class="lang-en">Soil Analysis</span>
+                        <span class="lang-gu">જમીનનું વિશ્લેષણ</span>
+                    </h4>
                     <p class="text-muted">
-                        Check soil health and nutrient status.
+                        <span class="lang-en">Check soil health and nutrient status.</span>
+                        <span class="lang-gu">જમીનની તંદુરસ્તી અને પોષક તત્વોની માહિતી તપાસો.</span>
                     </p>
                 </div>
             </a>
         </div>
+
         <!-- Fertilizer -->
         <div class="col-lg-3 col-md-6">
             <a href="{{ url_for('fertilizer') }}" class="text-decoration-none">
                 <div class="card service-card border-0 shadow h-100 text-center p-4">
                     <div class="service-icon bg-info text-white">🧪</div>
-                    <h4 class="mt-3">Fertilizer Advice</h4>
+                    <h4 class="mt-3">
+                        <span class="lang-en">Fertilizer Advice</span>
+                        <span class="lang-gu">ખાતરની સલાહ</span>
+                    </h4>
                     <p class="text-muted">
-                        Get fertilizer recommendations based on crop.
+                        <span class="lang-en">Get fertilizer recommendations based on crop.</span>
+                        <span class="lang-gu">પાક મુજબ યોગ્ય ખાતરની ભલામણ મેળવો.</span>
                     </p>
                 </div>
             </a>
         </div>
+
         <!-- Crop Recommendation -->
         <div class="col-lg-3 col-md-6">
             <a href="{{ url_for('crop_recommendation') }}" class="text-decoration-none">
                 <div class="card service-card border-0 shadow h-100 text-center p-4">
                     <div class="service-icon bg-secondary text-white">🌿</div>
-                    <h4 class="mt-3">Crop Recommendation</h4>
+                    <h4 class="mt-3">
+                        <span class="lang-en">Crop Recommendation</span>
+                        <span class="lang-gu">પાકની ભલામણ</span>
+                    </h4>
                     <p class="text-muted">
-                        Find the most suitable crop for your soil.
+                        <span class="lang-en">Find the most suitable crop for your soil.</span>
+                        <span class="lang-gu">તમારી જમીન માટે યોગ્ય પાકની માહિતી મેળવો.</span>
                     </p>
                 </div>
             </a>
         </div>
+
         <!-- Reports -->
         <div class="col-lg-3 col-md-6">
             <a href="{{ url_for('reports') }}" class="text-decoration-none">
                 <div class="card service-card border-0 shadow h-100 text-center p-4">
                     <div class="service-icon bg-dark text-white">📊</div>
-                    <h4 class="mt-3">Reports & Analytics</h4>
+                    <h4 class="mt-3">
+                        <span class="lang-en">Reports & Analytics</span>
+                        <span class="lang-gu">અહેવાલ અને માહિતી</span>
+                    </h4>
                     <p class="text-muted">
-                        View reports, charts and farm statistics.
+                        <span class="lang-en">View reports, charts and farm statistics.</span>
+                        <span class="lang-gu">અહેવાલ, ચાર્ટ અને ખેતીની આંકડાકીય માહિતી જુઓ.</span>
                     </p>
                 </div>
             </a>
         </div>
+
     </div>
 </section>
-<!-- ================= Sustainable Farming ================= -->
+
+<!-- ================= SUSTAINABLE FARMING ================= -->
 
 <section class="py-3 bg-light">
 
@@ -239,22 +310,30 @@
         <div class="row align-items-center">
 
             <!-- Left Content -->
-
             <div class="col-lg-6">
 
                 <span class="badge bg-success px-3 py-2 mb-3">
-                    🌿 Sustainable Farming
+                    <span class="lang-en">🌿 Sustainable Farming</span>
+                    <span class="lang-gu">🌿 ટકાઉ ખેતી</span>
                 </span>
 
                 <h2 class="fw-bold mb-4">
-                     Agriculture with Smart Technology
+                    <span class="lang-en">Agriculture with Smart Technology</span>
+                    <span class="lang-gu">સ્માર્ટ ટેકનોલોજી સાથે ખેતી</span>
                 </h2>
 
                 <p class="text-muted mb-4">
-                   Our Smart Agriculture Management System helps farmers
-                   improve productivity through AI, 
-                   soil analysis, weather insights, and sustainable farming practices 
-                   while conserving natural resources.
+                    <span class="lang-en">
+                        Our Smart Agriculture Management System helps farmers
+                        improve productivity through AI, soil analysis, weather insights,
+                        and sustainable farming practices while conserving natural resources.
+                    </span>
+
+                    <span class="lang-gu">
+                        અમારી સ્માર્ટ કૃષિ સિસ્ટમ ખેડૂતોને AI, જમીન વિશ્લેષણ,
+                        હવામાન માહિતી અને ટકાઉ ખેતી દ્વારા ઉત્પાદન સુધારવામાં મદદ કરે છે
+                        અને કુદરતી સંસાધનોનું સંરક્ષણ કરવામાં મદદ કરે છે.
+                    </span>
                 </p>
 
                 <div class="row">
@@ -263,9 +342,13 @@
                         <div class="d-flex">
                             <i class="fas fa-seedling fa-2x text-success me-3"></i>
                             <div>
-                                <h6 class="fw-bold">Healthy Soil</h6>
+                                <h6 class="fw-bold">
+                                    <span class="lang-en">Healthy Soil</span>
+                                    <span class="lang-gu">તંદુરસ્ત જમીન</span>
+                                </h6>
                                 <small class="text-muted">
-                                    Improve soil quality and crop growth.
+                                    <span class="lang-en">Improve soil quality and crop growth.</span>
+                                    <span class="lang-gu">જમીનની ગુણવત્તા અને પાકની વૃદ્ધિ સુધારો.</span>
                                 </small>
                             </div>
                         </div>
@@ -275,9 +358,13 @@
                         <div class="d-flex">
                             <i class="fas fa-tint fa-2x text-primary me-3"></i>
                             <div>
-                                <h6 class="fw-bold">Water Saving</h6>
+                                <h6 class="fw-bold">
+                                    <span class="lang-en">Water Saving</span>
+                                    <span class="lang-gu">પાણી બચત</span>
+                                </h6>
                                 <small class="text-muted">
-                                    Efficient irrigation management.
+                                    <span class="lang-en">Efficient irrigation management.</span>
+                                    <span class="lang-gu">પાણીનો યોગ્ય ઉપયોગ અને સિંચાઈ વ્યવસ્થાપન.</span>
                                 </small>
                             </div>
                         </div>
@@ -287,9 +374,13 @@
                         <div class="d-flex">
                             <i class="fas fa-robot fa-2x text-warning me-3"></i>
                             <div>
-                                <h6 class="fw-bold">AI Monitoring</h6>
+                                <h6 class="fw-bold">
+                                    <span class="lang-en">AI Monitoring</span>
+                                    <span class="lang-gu">AI દેખરેખ</span>
+                                </h6>
                                 <small class="text-muted">
-                                    Early disease detection using AI.
+                                    <span class="lang-en">Early disease detection using AI.</span>
+                                    <span class="lang-gu">AI દ્વારા વહેલી તકે રોગની ઓળખ.</span>
                                 </small>
                             </div>
                         </div>
@@ -299,9 +390,13 @@
                         <div class="d-flex">
                             <i class="fas fa-leaf fa-2x text-success me-3"></i>
                             <div>
-                                <h6 class="fw-bold">Eco-Friendly</h6>
+                                <h6 class="fw-bold">
+                                    <span class="lang-en">Eco-Friendly</span>
+                                    <span class="lang-gu">પર્યાવરણમિત્ર</span>
+                                </h6>
                                 <small class="text-muted">
-                                    Sustainable farming practices.
+                                    <span class="lang-en">Sustainable farming practices.</span>
+                                    <span class="lang-gu">ટકાઉ ખેતીની પદ્ધતિઓ.</span>
                                 </small>
                             </div>
                         </div>
@@ -310,13 +405,13 @@
                 </div>
 
                 <a href="{{ url_for('disease_detection') }}" class="btn btn-success btn-lg mt-3">
-                    Explore Features
+                    <span class="lang-en">Explore Features</span>
+                    <span class="lang-gu">સુવિધાઓ જુઓ</span>
                 </a>
 
             </div>
 
             <!-- Right Image -->
-
             <div class="col-lg-6 text-center">
 
                 <img src="https://images.unsplash.com/photo-1688261492178-4046d4b74a68?q=80&w=1075&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -330,251 +425,249 @@
     </div>
 
 </section>
+
 <!-- ================= LATEST NEWS ================= -->
 
 <section class="container my-5">
 
-<div class="text-center mb-5">
+    <div class="text-center mb-5">
 
-<span class="badge bg-success px-3 py-2">
+        <span class="badge bg-success px-3 py-2">
+            <span class="lang-en">Latest Updates</span>
+            <span class="lang-gu">તાજા અપડેટ્સ</span>
+        </span>
 
-Latest Updates
+        <h2 class="display-5 fw-bold mt-3">
 
-</span>
-<h2 class="display-5 fw-bold mt-3">
+            <a href="{{ url_for('news') }}"
+               class="text-decoration-none text-dark">
 
-<a href="{{ url_for('news') }}"
-class="text-decoration-none text-dark">
+                <span class="lang-en">📰 Agriculture News</span>
+                <span class="lang-gu">📰 કૃષિ સમાચાર</span>
 
-📰 Agriculture News
+            </a>
 
-</a>
+        </h2>
 
-</h2>
-<p class="text-muted">
-
-Stay updated with the latest farming innovations.
-
-</p>
-
-</div>
-
-<div class="row g-4">
-
-{% for article in articles %}
-
-<div class="col-lg-4 col-md-6 mb-4">
-
-<div class="card news-card shadow border-0 h-100">
-
-{% if article.urlToImage %}
-<img src="{{ article.urlToImage }}" class="card-img-top">
-{% else %}
-<img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600" class="card-img-top">
-{% endif %}
-
-<div class="card-body d-flex flex-column">
-
-<h5>{{ article.title }}</h5>
-
-<p>
-{{ article.description if article.description else "No description available." }}
-</p>
-
-<div class="mt-auto">
-
-<a href="{{ article.url }}"
-target="_blank"
-class="btn btn-success w-100">
-
-Read More →
-
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-{% endfor %}
-
-</div>
-
-<div class="text-center mt-4">
-
-    <a href="{{ url_for('news') }}" class="btn btn-success btn-lg">
-        📰 View Live Agriculture News
-    </a>
-
-</div>
-
-
-<div class="row mt-4">
-
-{% for item in news %}
-
-<div class="col-lg-4 col-md-6 mb-4">
-
-    <div class="card shadow h-100 news-card">
-
-        <img src="{{ item.image }}" 
-             class="card-img-top"
-             style="object-fit:cover;">
-
-<div class="card-body d-flex flex-column">
-
-    <h5 class="card-title fw-bold">
-        {{ item.title }}
-    </h5>
-
-    <p class="card-text flex-grow-1">
-        {{ item.description }}
-    </p>
-
-    <a href="{{ item.url }}" 
-       target="_blank"
-       class="btn btn-success mt-auto">
-        Read More
-    </a>
-
-</div>
-        
+        <p class="text-muted">
+            <span class="lang-en">Stay updated with the latest farming innovations.</span>
+            <span class="lang-gu">ખેતીમાં નવીનતમ માહિતી અને અપડેટથી માહિતગાર રહો.</span>
+        </p>
 
     </div>
 
-</div>
+    <div class="row g-4">
+
+        {% for article in articles %}
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="card news-card shadow border-0 h-100">
+
+                {% if article.urlToImage %}
+                <img src="{{ article.urlToImage }}" class="card-img-top">
+                {% else %}
+                <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600" class="card-img-top">
+                {% endif %}
+
+                <div class="card-body d-flex flex-column">
+
+                    <h5>{{ article.title }}</h5>
+
+                    <p>
+                        {{ article.description if article.description else "No description available." }}
+                    </p>
+
+                    <div class="mt-auto">
+
+                        <a href="{{ article.url }}"
+                           target="_blank"
+                           class="btn btn-success w-100">
+
+                            <span class="lang-en">Read More →</span>
+                            <span class="lang-gu">વધુ વાંચો →</span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="text-center mt-4">
+
+        <a href="{{ url_for('news') }}" class="btn btn-success btn-lg">
+            <span class="lang-en">📰 View Live Agriculture News</span>
+            <span class="lang-gu">📰 લાઇવ કૃષિ સમાચાર જુઓ</span>
+        </a>
+
+    </div>
+
+    <div class="row mt-4">
+
+        {% for item in news %}
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="card shadow h-100 news-card">
+
+                <img src="{{ item.image }}"
+                     class="card-img-top"
+                     style="object-fit:cover;">
+
+                <div class="card-body d-flex flex-column">
+
+                    <h5 class="card-title fw-bold">
+                        {{ item.title }}
+                    </h5>
+
+                    <p class="card-text flex-grow-1">
+                        {{ item.description }}
+                    </p>
+
+                    <a href="{{ item.url }}"
+                       target="_blank"
+                       class="btn btn-success mt-auto">
+
+                        <span class="lang-en">Read More</span>
+                        <span class="lang-gu">વધુ વાંચો</span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
 </section>
 
-{% endfor %}
-
-</div>
 <!-- ================= TESTIMONIALS ================= -->
 
 <section class="container my-5">
 
-<div class="text-center mb-5">
+    <div class="text-center mb-5">
 
-<span class="badge bg-warning text-dark">
+        <span class="badge bg-warning text-dark">
+            <span class="lang-en">Testimonials</span>
+            <span class="lang-gu">ખેડૂતોના અભિપ્રાય</span>
+        </span>
 
-Testimonials
+        <h2 class="display-5 fw-bold mt-3">
+            <span class="lang-en">⭐ What Farmers Say</span>
+            <span class="lang-gu">⭐ ખેડૂતો શું કહે છે</span>
+        </h2>
 
-</span>
+    </div>
 
-<h2 class="display-5 fw-bold mt-3">
+    <div class="row g-4">
 
-⭐ What Farmers Say
+        <div class="col-md-4">
 
-</h2>
+            <div class="card testimonial-card shadow border-0">
 
-</div>
+                <div class="card-body text-center">
 
-<div class="row g-4">
+                    <h1>👨‍🌾</h1>
 
-<div class="col-md-4">
+                    <p>
+                        <span class="lang-en">"This platform helped me increase crop production."</span>
+                        <span class="lang-gu">"આ પ્લેટફોર્મથી મને પાકનું ઉત્પાદન વધારવામાં મદદ મળી."</span>
+                    </p>
 
-<div class="card testimonial-card shadow border-0">
+                    <h5>Rajesh Patel</h5>
+                    ⭐⭐⭐⭐⭐
 
-<div class="card-body text-center">
+                </div>
 
-<h1>👨‍🌾</h1>
+            </div>
 
-<p>
+        </div>
 
-"This platform helped me increase crop production."
+        <div class="col-md-4">
 
-</p>
+            <div class="card testimonial-card shadow border-0">
 
-<h5>Rajesh Patel</h5>
+                <div class="card-body text-center">
 
-⭐⭐⭐⭐⭐
+                    <h1>👩‍🌾</h1>
 
-</div>
+                    <p>
+                        <span class="lang-en">"Weather prediction is extremely useful."</span>
+                        <span class="lang-gu">"હવામાનની આગાહી ખૂબ જ ઉપયોગી છે."</span>
+                    </p>
 
-</div>
+                    <h5>Sunita Sharma</h5>
+                    ⭐⭐⭐⭐⭐
 
-</div>
+                </div>
 
-<div class="col-md-4">
+            </div>
 
-<div class="card testimonial-card shadow border-0">
+        </div>
 
-<div class="card-body text-center">
+        <div class="col-md-4">
 
-<h1>👩‍🌾</h1>
+            <div class="card testimonial-card shadow border-0">
 
-<p>
+                <div class="card-body text-center">
 
-"Weather prediction is extremely useful."
+                    <h1>🧑‍🌾</h1>
 
-</p>
+                    <p>
+                        <span class="lang-en">"AI Disease Detection saved my crops."</span>
+                        <span class="lang-gu">"AI રોગની ઓળખથી મારા પાકને બચાવવામાં મદદ મળી."</span>
+                    </p>
 
-<h5>Sunita Sharma</h5>
+                    <h5>Mahesh Kumar</h5>
+                    ⭐⭐⭐⭐⭐
 
-⭐⭐⭐⭐⭐
+                </div>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-</div>
-
-<div class="col-md-4">
-
-<div class="card testimonial-card shadow border-0">
-
-<div class="card-body text-center">
-
-<h1>🧑‍🌾</h1>
-
-<p>
-
-"AI Disease Detection saved my crops."
-
-</p>
-
-<h5>Mahesh Kumar</h5>
-
-⭐⭐⭐⭐⭐
-
-</div>
-
-</div>
-
-</div>
-
-</div>
+    </div>
 
 </section>
+
 <!-- ================= CTA ================= -->
 
 <section class="container my-5">
 
-<div class="bg-success text-white rounded-4 shadow-lg p-5 text-center">
+    <div class="bg-success text-white rounded-4 shadow-lg p-5 text-center">
 
-<h2 class="display-5">
+        <h2 class="display-5">
+            <span class="lang-en">🌱 Ready for Smart Farming?</span>
+            <span class="lang-gu">🌱 સ્માર્ટ ખેતી માટે તૈયાર છો?</span>
+        </h2>
 
-🌱 Ready for Smart Farming?
+        <p class="lead">
+            <span class="lang-en">Join our Smart Agriculture Platform and make farming intelligent.</span>
+            <span class="lang-gu">અમારી સ્માર્ટ કૃષિ સિસ્ટમ સાથે જોડાઈને ખેતીને વધુ સરળ બનાવો.</span>
+        </p>
 
-</h2>
+        <a href="{{ url_for('farmers') }}" class="btn btn-light btn-lg">
+            <span class="lang-en">Get Started</span>
+            <span class="lang-gu">શરૂઆત કરો</span>
+        </a>
 
-<p class="lead">
-
-Join our Smart Agriculture Platform and make farming intelligent.
-
-</p>
-
-<a href="{{ url_for('farmers') }}" class="btn btn-light btn-lg">
-
-Get Started
-
-</a>
-
-</div>
+    </div>
 
 </section>
+
 <!-- ================= FAQ ================= -->
 
 <section class="container my-5">
@@ -582,14 +675,13 @@ Get Started
     <div class="text-center mb-5">
 
         <span class="badge bg-info px-3 py-2">
-
             FAQ
-
         </span>
 
         <h2 class="display-5 fw-bold mt-3">
 
-            ❓ Frequently Asked Questions
+            <span class="lang-en">❓ Frequently Asked Questions</span>
+            <span class="lang-gu">❓ વારંવાર પૂછાતા પ્રશ્નો</span>
 
         </h2>
 
@@ -605,7 +697,8 @@ Get Started
                     data-bs-toggle="collapse"
                     data-bs-target="#faq1">
 
-                    What is Smart Agriculture?
+                    <span class="lang-en">What is Smart Agriculture?</span>
+                    <span class="lang-gu">સ્માર્ટ કૃષિ શું છે?</span>
 
                 </button>
 
@@ -617,7 +710,8 @@ Get Started
 
                 <div class="accordion-body">
 
-                    Smart Agriculture uses AI and technology to improve farming.
+                    <span class="lang-en">Smart Agriculture uses AI and technology to improve farming.</span>
+                    <span class="lang-gu">સ્માર્ટ કૃષિમાં AI અને ટેકનોલોજીનો ઉપયોગ કરીને ખેતી વધુ સરળ અને સારી બનાવવામાં આવે છે.</span>
 
                 </div>
 
@@ -634,7 +728,8 @@ Get Started
                     data-bs-toggle="collapse"
                     data-bs-target="#faq2">
 
-                    Can AI detect plant diseases?
+                    <span class="lang-en">Can AI detect plant diseases?</span>
+                    <span class="lang-gu">શું AI છોડના રોગ ઓળખી શકે છે?</span>
 
                 </button>
 
@@ -646,7 +741,8 @@ Get Started
 
                 <div class="accordion-body">
 
-                    Yes. Upload a leaf image and the AI predicts the disease.
+                    <span class="lang-en">Yes. Upload a leaf image and the AI predicts the disease.</span>
+                    <span class="lang-gu">હા. પાનની તસવીર અપલોડ કરો અને AI રોગની આગાહી કરે છે.</span>
 
                 </div>
 
@@ -663,7 +759,8 @@ Get Started
                     data-bs-toggle="collapse"
                     data-bs-target="#faq3">
 
-                    Can I generate reports?
+                    <span class="lang-en">Can I generate reports?</span>
+                    <span class="lang-gu">શું હું અહેવાલ બનાવી શકું?</span>
 
                 </button>
 
@@ -675,7 +772,8 @@ Get Started
 
                 <div class="accordion-body">
 
-                    Yes. Farmer and crop reports are available in the Reports module.
+                    <span class="lang-en">Yes. Farmer and crop reports are available in the Reports module.</span>
+                    <span class="lang-gu">હા. Reports વિભાગમાં ખેડૂત અને પાકના અહેવાલ ઉપલબ્ધ છે.</span>
 
                 </div>
 
@@ -686,4 +784,5 @@ Get Started
     </div>
 
 </section>
+
 {% endblock %}

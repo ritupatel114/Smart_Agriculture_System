@@ -4,49 +4,183 @@
 
 <div class="container mt-5">
 
-<div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between align-items-center">
 
-<h2>🌾 Crop Management</h2>
+        <h2>
+            🌾
+            <span class="lang-en">Crop Management</span>
+            <span class="lang-gu">પાક વ્યવસ્થાપન</span>
+        </h2>
 
-<a href="{{ url_for('add_crop') }}" class="btn btn-success">
-+ Add Crop
-</a>
+        <a href="{{ url_for('add_crop') }}" class="btn btn-success">
+            + 
+            <span class="lang-en">Add Crop</span>
+            <span class="lang-gu">પાક ઉમેરો</span>
+        </a>
 
-</div>
+    </div>
 
-<table class="table table-bordered mt-4">
 
-<thead class="table-success">
+    <table class="table table-bordered table-striped mt-4">
 
-<tr>
+        <thead class="table-success">
 
-<th>ID</th>
-<th>Crop Name</th>
-<th>Season</th>
-<th>Area</th>
+            <tr>
 
-</tr>
+                <th>
+                    <span class="lang-en">ID</span>
+                    <span class="lang-gu">ક્રમ</span>
+                </th>
 
-</thead>
+                <th>
+                    <span class="lang-en">Crop Name</span>
+                    <span class="lang-gu">પાકનું નામ</span>
+                </th>
 
-<tbody>
+                <th>
+                    <span class="lang-en">Season</span>
+                    <span class="lang-gu">મોસમ</span>
+                </th>
 
-{% for crop in crops %}
+                <th>
+                    <span class="lang-en">Area</span>
+                    <span class="lang-gu">વિસ્તાર</span>
+                </th>
 
-<tr>
+            </tr>
 
-<td>{{ crop.id }}</td>
-<td>{{ crop.crop_name }}</td>
-<td>{{ crop.season }}</td>
-<td>{{ crop.area }}</td>
+        </thead>
 
-</tr>
 
-{% endfor %}
+        <tbody>
 
-</tbody>
+        {% for crop in crops %}
 
-</table>
+            <tr>
+
+                <td>{{ crop.id }}</td>
+
+
+                <!-- CROP NAME -->
+
+                <td>
+
+                    {% set crop_name = crop.crop_name|trim|lower %}
+
+                    {% if crop_name == "maize" %}
+
+                        <span class="lang-en">Maize</span>
+                        <span class="lang-gu">મકાઈ</span>
+
+                    {% elif crop_name == "wheat" %}
+
+                        <span class="lang-en">Wheat</span>
+                        <span class="lang-gu">ઘઉં</span>
+
+                    {% elif crop_name == "rice" %}
+
+                        <span class="lang-en">Rice</span>
+                        <span class="lang-gu">ચોખા</span>
+
+                    {% elif crop_name == "cotton" %}
+
+                        <span class="lang-en">Cotton</span>
+                        <span class="lang-gu">કપાસ</span>
+
+                    {% elif crop_name == "groundnut" %}
+
+                        <span class="lang-en">Groundnut</span>
+                        <span class="lang-gu">મગફળી</span>
+
+                    {% elif crop_name == "castor" %}
+
+                        <span class="lang-en">Castor</span>
+                        <span class="lang-gu">એરંડા</span>
+
+                    {% elif crop_name == "bajra" or crop_name == "bajri" %}
+
+                        <span class="lang-en">Bajra</span>
+                        <span class="lang-gu">બાજરી</span>
+
+                    {% elif crop_name == "sugarcane" %}
+
+                        <span class="lang-en">Sugarcane</span>
+                        <span class="lang-gu">શેરડી</span>
+
+                    {% elif crop_name == "potato" %}
+
+                        <span class="lang-en">Potato</span>
+                        <span class="lang-gu">બટાકા</span>
+
+                    {% elif crop_name == "tomato" %}
+
+                        <span class="lang-en">Tomato</span>
+                        <span class="lang-gu">ટામેટા</span>
+
+                    {% elif crop_name == "onion" %}
+
+                        <span class="lang-en">Onion</span>
+                        <span class="lang-gu">ડુંગળી</span>
+
+                    {% else %}
+
+                        <span class="lang-en">{{ crop.crop_name }}</span>
+                        <span class="lang-gu">{{ crop.crop_name }}</span>
+
+                    {% endif %}
+
+                </td>
+
+
+                <!-- SEASON -->
+
+                <td>
+
+                    {% set season_name = crop.season|trim|lower %}
+
+                    {% if season_name == "kharif" %}
+
+                        <span class="lang-en">Kharif</span>
+                        <span class="lang-gu">ખરીફ</span>
+
+                    {% elif season_name == "rabi" %}
+
+                        <span class="lang-en">Rabi</span>
+                        <span class="lang-gu">રવિ</span>
+
+                    {% elif season_name == "zaid" %}
+
+                        <span class="lang-en">Zaid</span>
+                        <span class="lang-gu">ઝાયદ</span>
+
+                    {% else %}
+
+                        <span class="lang-en">{{ crop.season }}</span>
+                        <span class="lang-gu">{{ crop.season }}</span>
+
+                    {% endif %}
+
+                </td>
+
+
+                <!-- AREA -->
+
+                <td>
+
+                    {{ crop.area }}
+
+                    <span class="lang-en">Acres</span>
+                    <span class="lang-gu">એકર</span>
+
+                </td>
+
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
 
 </div>
 

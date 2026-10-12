@@ -1,37 +1,69 @@
 {% extends "base.html" %}
-{% block title %}Admin Login{% endblock %}
+
+{% block title %}
+Admin Login
+{% endblock %}
+
 {% block content %}
-<div class="container mt-5" style="max-width:500px;">
+
+<div class="container mt-5 mb-5" style="max-width:500px;">
+
     <div class="card shadow">
+
         <div class="card-header bg-success text-white text-center">
-            <h3>🔐 Admin Login</h3>
+            <h3>
+                <span class="lang-en">🔐 Admin Login</span>
+                <span class="lang-gu">🔐 એડમિન લૉગિન</span>
+            </h3>
         </div>
+
         <div class="card-body">
+
             <form method="POST">
+
                 <div class="mb-3">
-                    <label>Username</label>
-                    <input type="text"
-                           class="form-control"
-                           name="username"
-                           required>
+                    <label class="form-label">
+                        <span class="lang-en">Username</span>
+                        <span class="lang-gu">યુઝરનેમ</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="username"
+                        required>
                 </div>
+
                 <div class="mb-3">
-                    <label>Password</label>
-                    <input type="password"
-                           class="form-control"
-                           name="password"
-                           required>
+                    <label class="form-label">
+                        <span class="lang-en">Password</span>
+                        <span class="lang-gu">પાસવર્ડ</span>
+                    </label>
+
+                    <input
+                        type="password"
+                        class="form-control"
+                        name="password"
+                        required>
                 </div>
-                <button class="btn btn-success w-100">
-                    Login
+
+                <button type="submit" class="btn btn-success w-100">
+                    <span class="lang-en">Login</span>
+                    <span class="lang-gu">લૉગિન</span>
                 </button>
+
             </form>
+
             {% if error %}
             <div class="alert alert-danger mt-3">
                 {{ error }}
             </div>
             {% endif %}
+
         </div>
+
     </div>
+
 </div>
+
 {% endblock %}

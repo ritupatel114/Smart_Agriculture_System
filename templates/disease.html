@@ -7,7 +7,8 @@
 <div class="container mt-5">
 
     <h2 class="text-center text-success mb-4">
-        🌿 Pest & Disease Diagnosis
+        🌿 <span class="lang-en">Pest & Disease Diagnosis</span>
+        <span class="lang-gu">જીવાત અને રોગ નિદાન</span>
     </h2>
 
     <div class="card shadow p-4">
@@ -15,28 +16,35 @@
         <form method="POST">
 
             <div class="mb-3">
-                <label class="form-label">Crop</label>
+                <label class="form-label">
+                    <span class="lang-en">Crop</span>
+                    <span class="lang-gu">પાક</span>
+                </label>
 
                 <select class="form-select" name="crop" required>
-                    <option>Rice</option>
-                    <option>Wheat</option>
-                    <option>Cotton</option>
-                    <option>Maize</option>
+                    <option value="Rice">Rice / ડાંગર</option>
+                    <option value="Wheat">Wheat / ઘઉં</option>
+                    <option value="Cotton">Cotton / કપાસ</option>
+                    <option value="Maize">Maize / મકાઈ</option>
                 </select>
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Symptom</label>
+                <label class="form-label">
+                    <span class="lang-en">Symptom</span>
+                    <span class="lang-gu">લક્ષણ</span>
+                </label>
 
                 <select class="form-select" name="symptom" required>
-                    <option>Yellow Leaves</option>
-                    <option>Brown Spots</option>
-                    <option>Leaf Curl</option>
+                    <option value="Yellow Leaves">Yellow Leaves / પીળાં પાંદડાં</option>
+                    <option value="Brown Spots">Brown Spots / ભૂરા ડાઘ</option>
+                    <option value="Leaf Curl">Leaf Curl / પાંદડાં વળવાં</option>
                 </select>
             </div>
 
-            <button class="btn btn-success w-100">
-                Diagnose
+            <button type="submit" class="btn btn-success w-100">
+                <span class="lang-en">Diagnose</span>
+                <span class="lang-gu">નિદાન કરો</span>
             </button>
 
         </form>
@@ -48,21 +56,90 @@
     <div class="card shadow mt-4">
 
         <div class="card-header bg-success text-white">
-            Diagnosis Result
+            <span class="lang-en">Diagnosis Result</span>
+            <span class="lang-gu">નિદાનનું પરિણામ</span>
         </div>
 
         <div class="card-body">
 
-            <h4>🦠 Disease</h4>
-            <p>{{ result.disease }}</p>
+            <h4>
+                🦠 <span class="lang-en">Disease</span>
+                <span class="lang-gu">રોગ</span>
+            </h4>
+            <p>
+    <span class="lang-en">{{ result.disease }}</span>
+    <span class="lang-gu">
+        {% if result.disease == "No disease detected" %}
+            કોઈ રોગ મળ્યો નથી
+        {% elif result.disease == "Nitrogen Deficiency" %}
+            નાઇટ્રોજનની ઉણપ
+        {% elif result.disease == "Brown Spot Disease" %}
+            બ્રાઉન સ્પોટ રોગ
+        {% elif result.disease == "Yellow Rust" %}
+            પીળો રસ્ટ રોગ
+        {% elif result.disease == "Leaf Curl Virus" %}
+            પાન વળવાનો વાયરસ
+        {% elif result.disease == "Leaf Blight" %}
+            પાનનો ઝાળનો રોગ
+        {% else %}
+            {{ result.disease }}
+        {% endif %}
+    </span>
+</p>
 
-            <h4>💊 Treatment</h4>
-            <p>{{ result.treatment }}</p>
+<h4>
+    💊 <span class="lang-en">Treatment</span>
+    <span class="lang-gu">સારવાર</span>
+</h4>
 
-            <h4>🌱 Prevention</h4>
-            <p>{{ result.prevention }}</p>
+<p>
+    <span class="lang-en">{{ result.treatment }}</span>
+    <span class="lang-gu">
+        {% if result.treatment == "No treatment required." %}
+            સારવારની જરૂર નથી.
+        {% elif result.treatment == "Apply Urea fertilizer." %}
+            યુરિયા ખાતરનો ઉપયોગ કરો.
+        {% elif result.treatment == "Spray Mancozeb fungicide." %}
+            મેન્કોઝેબ ફૂગનાશકનો છંટકાવ કરો.
+        {% elif result.treatment == "Apply Propiconazole fungicide." %}
+            પ્રોપિકોનાઝોલ ફૂગનાશકનો ઉપયોગ કરો.
+        {% elif result.treatment == "Control whiteflies using recommended insecticides." %}
+            ભલામણ કરેલી જંતુનાશક દવાઓથી સફેદ માખીનું નિયંત્રણ કરો.
+        {% elif result.treatment == "Spray Azoxystrobin fungicide." %}
+            એઝોક્સિસ્ટ્રોબિન ફૂગનાશકનો છંટકાવ કરો.
+        {% else %}
+            {{ result.treatment }}
+        {% endif %}
+    </span>
+</p>
 
-        </div>
+<h4>
+    🌱 <span class="lang-en">Prevention</span>
+    <span class="lang-gu">બચાવ</span>
+</h4>
+
+<p>
+    <span class="lang-en">{{ result.prevention }}</span>
+    <span class="lang-gu">
+        {% if result.prevention == "Keep monitoring the crop." %}
+            પાકનું નિયમિત નિરીક્ષણ કરતા રહો.
+        {% elif result.prevention == "Maintain proper nutrient management." %}
+            પોષક તત્ત્વોનું યોગ્ય વ્યવસ્થાપન જાળવો.
+        {% elif result.prevention == "Use disease-resistant varieties." %}
+            રોગપ્રતિકારક જાતોનો ઉપયોગ કરો.
+        {% elif result.prevention == "Grow resistant wheat varieties." %}
+            રોગપ્રતિકારક ઘઉંની જાતો ઉગાડો.
+        {% elif result.prevention == "Use virus-free seeds." %}
+            વાયરસમુક્ત બીજનો ઉપયોગ કરો.
+        {% elif result.prevention == "Rotate crops regularly." %}
+            નિયમિત રીતે પાકની ફેરબદલી કરો.
+        {% else %}
+            {{ result.prevention }}
+        {% endif %}
+    </span>
+</p>
+            
+</div>
 
     </div>
 

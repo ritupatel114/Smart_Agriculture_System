@@ -4,17 +4,19 @@
 
 <div class="container mt-5">
 
-     <div class="text-center mb-5">
+    <div class="text-center mb-5">
 
-    <h1 class="display-5 fw-bold text-success">
-         Smart Agriculture Dashboard
-    </h1>
+        <h1 class="display-5 fw-bold text-success">
+            <span class="lang-en">Smart Agriculture Dashboard</span>
+            <span class="lang-gu">સ્માર્ટ કૃષિ ડેશબોર્ડ</span>
+        </h1>
 
-    <p class="text-muted fs-5">
-        Welcome to your Agriculture Management System
-    </p>
+        <p class="text-muted fs-5">
+            <span class="lang-en">Welcome to your Agriculture Management System</span>
+            <span class="lang-gu">તમારી કૃષિ વ્યવસ્થાપન સિસ્ટમમાં આપનું સ્વાગત છે</span>
+        </p>
 
-</div>
+    </div>
 
     <!-- Statistics Cards -->
     <div class="row">
@@ -23,7 +25,10 @@
             <div class="card shadow border-0 bg-success text-white">
                 <div class="card-body text-center">
                     <i class="fas fa-user fa-3x mb-3"></i>
-                    <h5>Total Farmers</h5>
+                    <h5>
+                        <span class="lang-en">Total Farmers</span>
+                        <span class="lang-gu">કુલ ખેડૂતો</span>
+                    </h5>
                     <h1>{{ farmer_count }}</h1>
                 </div>
             </div>
@@ -33,7 +38,10 @@
             <div class="card shadow border-0 bg-primary text-white">
                 <div class="card-body text-center">
                     <i class="fas fa-seedling fa-3x mb-3"></i>
-                    <h5>Total Crops</h5>
+                    <h5>
+                        <span class="lang-en">Total Crops</span>
+                        <span class="lang-gu">કુલ પાક</span>
+                    </h5>
                     <h1>{{ crop_count }}</h1>
                 </div>
             </div>
@@ -43,7 +51,10 @@
             <div class="card shadow border-0 bg-warning text-dark">
                 <div class="card-body text-center">
                     <i class="fas fa-envelope fa-3x mb-3"></i>
-                    <h5>Messages</h5>
+                    <h5>
+                        <span class="lang-en">Messages</span>
+                        <span class="lang-gu">સંદેશાઓ</span>
+                    </h5>
                     <h1>{{ contact_count }}</h1>
                 </div>
             </div>
@@ -52,7 +63,10 @@
         <div class="col-md-3 mb-4">
             <div class="card shadow border-0 bg-danger text-white">
                 <div class="card-body text-center">
-                    <h5>Admins</h5>
+                    <h5>
+                        <span class="lang-en">Admins</span>
+                        <span class="lang-gu">એડમિન</span>
+                    </h5>
                     <i class="fas fa-user-shield fa-3x mb-3"></i>
                     <h1>{{ admin_count }}</h1>
                 </div>
@@ -67,7 +81,8 @@
         <div class="col-lg-6 mb-4">
             <div class="card shadow">
                 <div class="card-header bg-success text-white">
-                    Farmer Growth
+                    <span class="lang-en">Farmer Growth</span>
+                    <span class="lang-gu">ખેડૂતોનો વિકાસ</span>
                 </div>
                 <div class="card-body">
                     <canvas id="farmerChart"></canvas>
@@ -78,7 +93,8 @@
         <div class="col-lg-6 mb-4">
             <div class="card shadow">
                 <div class="card-header bg-primary text-white">
-                    Crop Distribution
+                    <span class="lang-en">Crop Distribution</span>
+                    <span class="lang-gu">પાકનું વિતરણ</span>
                 </div>
                 <div class="card-body">
                     <canvas id="cropChart"></canvas>
@@ -92,7 +108,8 @@
     <div class="card shadow mb-4">
 
         <div class="card-header bg-success text-white">
-            Recent Farmers
+            <span class="lang-en">Recent Farmers</span>
+            <span class="lang-gu">તાજેતરના ખેડૂતો</span>
         </div>
 
         <div class="card-body">
@@ -101,18 +118,31 @@
 
                 <thead class="table-success">
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Village</th>
-                        <th>Mobile</th>
-                        <th>Land</th>
+                        <th>
+                            <span class="lang-en">ID</span>
+                            <span class="lang-gu">આઈડી</span>
+                        </th>
+                        <th>
+                            <span class="lang-en">Name</span>
+                            <span class="lang-gu">નામ</span>
+                        </th>
+                        <th>
+                            <span class="lang-en">Village</span>
+                            <span class="lang-gu">ગામ</span>
+                        </th>
+                        <th>
+                            <span class="lang-en">Mobile</span>
+                            <span class="lang-gu">મોબાઇલ</span>
+                        </th>
+                        <th>
+                            <span class="lang-en">Land</span>
+                            <span class="lang-gu">જમીન</span>
+                        </th>
                     </tr>
                 </thead>
 
                 <tbody>
-
                     {% for farmer in recent_farmers %}
-
                     <tr>
                         <td>{{ farmer.id }}</td>
                         <td>{{ farmer.name }}</td>
@@ -120,9 +150,14 @@
                         <td>{{ farmer.mobile }}</td>
                         <td>{{ farmer.land }}</td>
                     </tr>
-
+                    {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center text-muted">
+                            <span class="lang-en">No farmers found.</span>
+                            <span class="lang-gu">કોઈ ખેડૂત મળ્યા નથી.</span>
+                        </td>
+                    </tr>
                     {% endfor %}
-
                 </tbody>
 
             </table>
@@ -132,11 +167,11 @@
     </div>
 
     <!-- Recent Contacts -->
-
     <div class="card shadow">
 
         <div class="card-header bg-primary text-white">
-            Recent Contact Messages
+            <span class="lang-en">Recent Contact Messages</span>
+            <span class="lang-gu">તાજેતરના સંપર્ક સંદેશાઓ</span>
         </div>
 
         <div class="card-body">
@@ -145,24 +180,36 @@
 
                 <thead class="table-primary">
                     <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Subject</th>
+                        <th>
+                            <span class="lang-en">Name</span>
+                            <span class="lang-gu">નામ</span>
+                        </th>
+                        <th>
+                            <span class="lang-en">Email</span>
+                            <span class="lang-gu">ઇમેઇલ</span>
+                        </th>
+                        <th>
+                            <span class="lang-en">Subject</span>
+                            <span class="lang-gu">વિષય</span>
+                        </th>
                     </tr>
                 </thead>
 
                 <tbody>
-
                     {% for contact in recent_contacts %}
-
                     <tr>
                         <td>{{ contact.name }}</td>
                         <td>{{ contact.email }}</td>
                         <td>{{ contact.subject }}</td>
                     </tr>
-
+                    {% else %}
+                    <tr>
+                        <td colspan="3" class="text-center text-muted">
+                            <span class="lang-en">No contact messages found.</span>
+                            <span class="lang-gu">કોઈ સંપર્ક સંદેશ મળ્યો નથી.</span>
+                        </td>
+                    </tr>
                     {% endfor %}
-
                 </tbody>
 
             </table>
@@ -174,7 +221,6 @@
 </div>
 
 <!-- Chart JS -->
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
@@ -185,17 +231,19 @@ new Chart(document.getElementById("farmerChart"), {
 
     data: {
 
-        labels: ["Jan","Feb","Mar","Apr","May","Jun"],
+        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
 
         datasets: [{
 
-            label: "Farmers",
+            label: document.documentElement.lang === "gu"
+                ? "ખેડૂતો"
+                : "Farmers",
 
-            data: [5,10,15,20,25,30],
+            data: [5, 10, 15, 20, 25, 30],
 
-            borderWidth:2,
+            borderWidth: 2,
 
-            fill:false
+            fill: false
 
         }]
 
@@ -205,15 +253,17 @@ new Chart(document.getElementById("farmerChart"), {
 
 new Chart(document.getElementById("cropChart"), {
 
-    type:"pie",
+    type: "pie",
 
-    data:{
+    data: {
 
-        labels:["Wheat","Rice","Cotton","Maize"],
+        labels: document.documentElement.lang === "gu"
+            ? ["ઘઉં", "ચોખા", "કપાસ", "મકાઈ"]
+            : ["Wheat", "Rice", "Cotton", "Maize"],
 
-        datasets:[{
+        datasets: [{
 
-            data:[30,20,25,25]
+            data: [30, 20, 25, 25]
 
         }]
 

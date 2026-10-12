@@ -5,81 +5,175 @@
 <div class="container mt-5">
 
     <h2 class="mb-4 text-success">
-        👨‍🌾 Farmer Management
+        <span class="lang-en">👨‍🌾 Farmer Management</span>
+        <span class="lang-gu">👨‍🌾 ખેડૂત વ્યવસ્થાપન</span>
     </h2>
-    
 
-   <a href="{{ url_for('add_farmer') }}"
-   class="btn btn-success px-4 py-2 shadow-sm rounded-pill mb-3">
-    <i class="fas fa-user-plus me-2"></i>
-    Add Farmer
-</a>
+    <a href="{{ url_for('add_farmer') }}"
+       class="btn btn-success px-4 py-2 shadow-sm rounded-pill mb-3">
+
+        <i class="fas fa-user-plus me-2"></i>
+
+        <span class="lang-en">Add Farmer</span>
+        <span class="lang-gu">ખેડૂત ઉમેરો</span>
+
+    </a>
+
     <div class="row mb-3">
-    <div class="col-md-6">
 
-        <form method="GET">
-            <div class="input-group">
+        <div class="col-md-6">
 
-                <input
-                    type="text"
-                    name="search"
-                    class="form-control"
-                    placeholder="Search by Name, Village or Mobile..."
-                    value="{{ search }}">
+            <form method="GET">
 
-                <button type="submit" class="btn btn-success px-4">
-                    🔍 Search
-                </button>
+                <div class="input-group">
 
-                <a href="{{ url_for('farmers') }}"
-                   class="btn btn-outline-secondary d-flex align-items-center justify-content-center px-4">
-                    🔄 Reset
-                </a>
+                    <input
+                        type="text"
+                        name="search"
+                        class="form-control"
+                        placeholder="Search by Name, Village or Mobile..."
+                        value="{{ search }}">
 
-            </div>
-        </form>
+                    <button type="submit" class="btn btn-success px-4">
+                        🔍
+                        <span class="lang-en">Search</span>
+                        <span class="lang-gu">શોધો</span>
+                    </button>
+
+                    <a href="{{ url_for('farmers') }}"
+                       class="btn btn-outline-secondary d-flex align-items-center justify-content-center px-4">
+
+                        🔄
+                        <span class="lang-en">Reset</span>
+                        <span class="lang-gu">રીસેટ</span>
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
 
     </div>
-</div>
+
+
     <table class="table table-bordered table-striped">
+
         <thead class="table-success">
-            <thead class="table-success">
-<tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Village</th>
-    <th>Mobile</th>
-    <th>Land (Acres)</th>
-    <th>Actions</th>
-</tr>
-</thead>
+
+            <tr>
+                <th>
+                    <span class="lang-en">ID</span>
+                    <span class="lang-gu">ID</span>
+                </th>
+
+                <th>
+                    <span class="lang-en">Name</span>
+                    <span class="lang-gu">નામ</span>
+                </th>
+
+                <th>
+                    <span class="lang-en">Village</span>
+                    <span class="lang-gu">ગામ</span>
+                </th>
+
+                <th>
+                    <span class="lang-en">Mobile</span>
+                    <span class="lang-gu">મોબાઇલ</span>
+                </th>
+
+                <th>
+                    <span class="lang-en">Land (Acres)</span>
+                    <span class="lang-gu">જમીન (એકર)</span>
+                </th>
+
+                <th>
+                    <span class="lang-en">Actions</span>
+                    <span class="lang-gu">ક્રિયાઓ</span>
+                </th>
+            </tr>
+
         </thead>
+
         <tbody>
+
         {% for farmer in farmers %}
-          <tr>
-    <td>{{ farmer.id }}</td>
-    <td>{{ farmer.name }}</td>
-    <td>{{ farmer.village }}</td>
-    <td>{{ farmer.mobile }}</td>
-    <td>{{ farmer.land }}</td>
-    <td>
-        <a href="{{ url_for('farmer_details', id=farmer.id) }}"
-           class="btn btn-info btn-sm">
-            View
-        </a>
-        <a href="{{ url_for('edit_farmer', id=farmer.id) }}"
-   class="btn btn-warning btn-sm">
-    Edit
-</a>
-<a href="{{ url_for('delete_farmer', id=farmer.id) }}"
-   class="btn btn-danger btn-sm"
-   onclick="return confirm('Are you sure you want to delete this farmer?');">
-    Delete
-</a>
-    </td>
-</tr>
+
+            <tr>
+
+                <td>{{ farmer.id }}</td>
+
+                <td>{{ farmer.name }}</td>
+
+                <td>{{ farmer.village }}</td>
+
+                <td>{{ farmer.mobile }}</td>
+
+                <td>{{ farmer.land }}</td>
+
+                <td>
+
+                    <a href="{{ url_for('farmer_details', id=farmer.id) }}"
+                       class="btn btn-info btn-sm">
+
+                        <span class="lang-en">View</span>
+                        <span class="lang-gu">જુઓ</span>
+
+                    </a>
+
+
+                    <a href="{{ url_for('edit_farmer', id=farmer.id) }}"
+                       class="btn btn-warning btn-sm">
+
+                        <span class="lang-en">Edit</span>
+                        <span class="lang-gu">ફેરફાર કરો</span>
+
+                    </a>
+
+
+                    <a href="{{ url_for('delete_farmer', id=farmer.id) }}"
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirmDeleteFarmer();">
+
+                        <span class="lang-en">Delete</span>
+                        <span class="lang-gu">કાઢી નાખો</span>
+
+                    </a>
+
+                </td>
+
+            </tr>
+
         {% endfor %}
+
         </tbody>
+
     </table>
+
 </div>
+
+
+<script>
+
+/* ================= DELETE CONFIRMATION ================= */
+
+function confirmDeleteFarmer() {
+
+    const language = localStorage.getItem("language") || "en";
+
+    if (language === "gu") {
+
+        return confirm("શું તમે આ ખેડૂતને કાઢી નાખવા માંગો છો?");
+
+    } else {
+
+        return confirm("Are you sure you want to delete this farmer?");
+
+    }
+
+}
+
+</script>
+
 {% endblock %}

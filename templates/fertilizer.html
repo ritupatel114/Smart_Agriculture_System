@@ -1,50 +1,138 @@
 {% extends "base.html" %}
+
 {% block content %}
+
 <div class="container mt-5">
+
     <h2 class="text-center text-success mb-4">
-        🌿 Fertilizer Recommendation
+        🌿
+        <span class="lang-en">Fertilizer Recommendation</span>
+        <span class="lang-gu">ખાતરની જરૂરિયાત</span>
     </h2>
+
     <div class="card shadow">
+
         <div class="card-body">
+
             <form method="POST">
+
                 <div class="mb-3">
-                    <label class="form-label">Select Crop</label>
+
+                    <label class="form-label">
+                        <span class="lang-en">Select Crop</span>
+                        <span class="lang-gu">પાક પસંદ કરો</span>
+                    </label>
+
                     <select class="form-select" name="crop" required>
-                        <option value="">Choose Crop</option>
-                        <option>Wheat</option>
-                        <option>Rice</option>
-                        <option>Cotton</option>
-                        <option>Maize</option>
+
+                        <option value="">
+                            <span class="lang-en">Choose Crop</span>
+                            <span class="lang-gu">પાક પસંદ કરો</span>
+                        </option>
+
+                        <option value="Wheat">Wheat / ઘઉં</option>
+                        <option value="Rice">Rice / ચોખા</option>
+                        <option value="Cotton">Cotton / કપાસ</option>
+                        <option value="Maize">Maize / મકાઈ</option>
+
                     </select>
+
                 </div>
+
+
                 <div class="mb-3">
-                    <label class="form-label">Select Soil Type</label>
+
+                    <label class="form-label">
+                        <span class="lang-en">Select Soil Type</span>
+                        <span class="lang-gu">જમીનનો પ્રકાર પસંદ કરો</span>
+                    </label>
+
                     <select class="form-select" name="soil" required>
-                        <option value="">Choose Soil</option>
-                        <option>Clay</option>
-                        <option>Loamy</option>
-                        <option>Sandy</option>
-                        <option>Black Soil</option>
-                        <option>Red Soil</option>
+
+                        <option value="">
+                            <span class="lang-en">Choose Soil</span>
+                            <span class="lang-gu">જમીન પસંદ કરો</span>
+                        </option>
+
+                        <option value="Clay">Clay / ચીકણી જમીન</option>
+                        <option value="Loamy">Loamy / ગોરાડુ જમીન</option>
+                        <option value="Sandy">Sandy / રેતાળ જમીન</option>
+                        <option value="Black Soil">Black Soil / કાળી જમીન</option>
+                        <option value="Red Soil">Red Soil / લાલ જમીન</option>
+
                     </select>
+
                 </div>
+
+
                 <button type="submit" class="btn btn-success">
-                    Get Recommendation
+
+                    <span class="lang-en">Get Recommendation</span>
+                    <span class="lang-gu">જરૂરિયાત મેળવો</span>
+
                 </button>
+
             </form>
+
         </div>
+
     </div>
+
+
     {% if recommendation %}
-    <div class="card mt-4 shadow border-success">
-        <div class="card-header bg-success text-white">
-            Recommendation Result
-        </div>
-        <div class="card-body">
-            <h4 class="text-success">
-                {{ recommendation }}
-            </h4>
-        </div>
+
+<div class="card mt-4 shadow border-success">
+
+    <div class="card-header bg-success text-white">
+        <span class="lang-en">Recommendation Result</span>
+        <span class="lang-gu">ભલામણનું પરિણામ</span>
     </div>
-    {% endif %}
+
+    <div class="card-body">
+
+        {% if recommendation == "Urea + Potash" %}
+
+            <h4 class="text-success">
+                <span class="lang-en">Recommended: Urea + Potash</span>
+                <span class="lang-gu">ભલામણ: યુરિયા + પોટાશ</span>
+            </h4>
+
+        {% elif recommendation == "Urea + DAP" %}
+
+            <h4 class="text-success">
+                <span class="lang-en">Recommended: Urea + DAP</span>
+                <span class="lang-gu">ભલામણ: યુરિયા + DAP</span>
+            </h4>
+
+        {% elif recommendation == "NPK (20:20:20)" %}
+
+            <h4 class="text-success">
+                <span class="lang-en">Recommended: NPK (20:20:20)</span>
+                <span class="lang-gu">ભલામણ: NPK (20:20:20)</span>
+            </h4>
+
+        {% elif recommendation == "Urea + Compost" %}
+
+            <h4 class="text-success">
+                <span class="lang-en">Recommended: Urea + Compost</span>
+                <span class="lang-gu">ભલામણ: યુરિયા + કમ્પોસ્ટ</span>
+            </h4>
+
+        {% else %}
+
+            <h4 class="text-success">
+                <span class="lang-en">No recommendation available.</span>
+                <span class="lang-gu">કોઈ ભલામણ ઉપલબ્ધ નથી.</span>
+            </h4>
+
+        {% endif %}
+
+    </div>
+
 </div>
+
+{% endif %}
+
+</div>
+
 {% endblock %}

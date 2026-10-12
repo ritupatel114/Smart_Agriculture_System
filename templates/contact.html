@@ -5,9 +5,14 @@
 <div class="container py-5">
 
     <div class="text-center mb-5">
-        <h2 class="fw-bold text-success">Contact Us</h2>
+        <h2 class="fw-bold text-success">
+            <span class="lang-en">Contact Us</span>
+            <span class="lang-gu">અમારો સંપર્ક કરો</span>
+        </h2>
+
         <p class="text-muted">
-            Have a question? We'd love to hear from you.
+            <span class="lang-en">Have a question? We'd love to hear from you.</span>
+            <span class="lang-gu">તમને કોઈ પ્રશ્ન છે? અમને જણાવો.</span>
         </p>
     </div>
 
@@ -19,21 +24,28 @@
             <div class="card shadow border-0">
 
                 <div class="card-header bg-success text-white">
-                    <h4 class="mb-0">Send us a Message</h4>
+                    <h4 class="mb-0">
+                        <span class="lang-en">Send us a Message</span>
+                        <span class="lang-gu">અમને સંદેશ મોકલો</span>
+                    </h4>
                 </div>
 
                 <div class="card-body">
 
                     {% if success %}
                     <div class="alert alert-success">
-                        {{ success }}
+                        <span class="lang-en">{{ success }}</span>
+                        <span class="lang-gu">સંદેશ સફળતાપૂર્વક મોકલાયો!</span>
                     </div>
                     {% endif %}
 
                     <form method="POST">
 
                         <div class="mb-3">
-                            <label class="form-label">Name</label>
+                            <label class="form-label">
+                                <span class="lang-en">Name</span>
+                                <span class="lang-gu">નામ</span>
+                            </label>
                             <input
                                 type="text"
                                 class="form-control"
@@ -42,7 +54,10 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Email</label>
+                            <label class="form-label">
+                                <span class="lang-en">Email</span>
+                                <span class="lang-gu">ઇમેઇલ</span>
+                            </label>
                             <input
                                 type="email"
                                 class="form-control"
@@ -51,7 +66,10 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Subject</label>
+                            <label class="form-label">
+                                <span class="lang-en">Subject</span>
+                                <span class="lang-gu">વિષય</span>
+                            </label>
                             <input
                                 type="text"
                                 class="form-control"
@@ -60,7 +78,10 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Message</label>
+                            <label class="form-label">
+                                <span class="lang-en">Message</span>
+                                <span class="lang-gu">સંદેશ</span>
+                            </label>
                             <textarea
                                 class="form-control"
                                 rows="5"
@@ -69,7 +90,8 @@
                         </div>
 
                         <button type="submit" class="btn btn-success w-100">
-                            Send Message
+                            <span class="lang-en">Send Message</span>
+                            <span class="lang-gu">સંદેશ મોકલો</span>
                         </button>
 
                     </form>
@@ -86,38 +108,61 @@
             <div class="card shadow border-0">
 
                 <div class="card-header bg-dark text-white">
-                    <h4 class="mb-0">Contact Information</h4>
+                    <h4 class="mb-0">
+                        <span class="lang-en">Contact Information</span>
+                        <span class="lang-gu">સંપર્ક માહિતી</span>
+                    </h4>
                 </div>
 
                 <div class="card-body">
 
                     <p>
-                        <strong>📍 Address</strong><br>
-                        Department of B.Sc. IT<br>
-                        Indrashil University<br>
-                        Gujarat, India
+                        <strong>
+                            <span class="lang-en">📍 Address</span>
+                            <span class="lang-gu">📍 સરનામું</span>
+                        </strong><br>
+                        <span class="lang-en">
+                            Department of B.Sc. IT<br>
+                            Indrashil University<br>
+                            Gujarat, India
+                        </span>
+                        <span class="lang-gu">
+                            બી.એસસી. આઈ.ટી. વિભાગ<br>
+                            ઇન્દ્રશીલ યુનિવર્સિટી<br>
+                            ગુજરાત, ભારત
+                        </span>
                     </p>
 
                     <hr>
 
                     <p>
-                        <strong>📞 Phone</strong><br>
+                        <strong>
+                            <span class="lang-en">📞 Phone</span>
+                            <span class="lang-gu">📞 ફોન</span>
+                        </strong><br>
                         +91 9876543210
                     </p>
 
                     <hr>
 
                     <p>
-                        <strong>📧 Email</strong><br>
+                        <strong>
+                            <span class="lang-en">📧 Email</span>
+                            <span class="lang-gu">📧 ઇમેઇલ</span>
+                        </strong><br>
                         smartagriculture@gmail.com
                     </p>
 
                     <hr>
 
-                    <h5 class="text-success">Working Hours</h5>
+                    <h5 class="text-success">
+                        <span class="lang-en">Working Hours</span>
+                        <span class="lang-gu">કાર્ય સમય</span>
+                    </h5>
 
                     <p>
-                        Monday - Saturday<br>
+                        <span class="lang-en">Monday - Saturday</span>
+                        <span class="lang-gu">સોમવારથી શનિવાર</span><br>
                         9:00 AM - 6:00 PM
                     </p>
 

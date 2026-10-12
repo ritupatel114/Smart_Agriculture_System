@@ -6,45 +6,239 @@
 
     <div class="card shadow">
 
+        <!-- Farmer Name -->
         <div class="card-header bg-success text-white">
             <h3>{{ farmer.name }}</h3>
         </div>
 
         <div class="card-body">
 
-            <p><strong>Village:</strong> {{ farmer.village }}</p>
-            <p><strong>Mobile:</strong> {{ farmer.mobile }}</p>
-            <p><strong>Land:</strong> {{ farmer.land }} Acres</p>
+            <!-- Farmer Details -->
+
+            <p>
+                <strong>
+                    <span class="lang-en">Village:</span>
+                    <span class="lang-gu">ગામ:</span>
+                </strong>
+                {{ farmer.village }}
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Mobile:</span>
+                    <span class="lang-gu">મોબાઇલ નંબર:</span>
+                </strong>
+                {{ farmer.mobile }}
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Land:</span>
+                    <span class="lang-gu">જમીન:</span>
+                </strong>
+
+                {{ farmer.land }}
+
+                <span class="lang-en">Acres</span>
+                <span class="lang-gu">એકર</span>
+            </p>
 
             <hr>
 
-            <h4>Crops</h4>
+            <!-- Crops Heading -->
+
+            <h4>
+                <span class="lang-en">Crops</span>
+                <span class="lang-gu">પાક</span>
+            </h4>
+
 
             {% if farmer.crops %}
 
-            <table class="table table-bordered">
+            <div class="table-responsive">
 
-                <tr>
-                    <th>Crop</th>
-                    <th>Season</th>
-                    <th>Area</th>
-                </tr>
+                <table class="table table-bordered table-striped mt-3">
 
-                {% for crop in farmer.crops %}
+                    <thead class="table-success">
 
-                <tr>
-                    <td>{{ crop.crop_name }}</td>
-                    <td>{{ crop.season }}</td>
-                    <td>{{ crop.area }}</td>
-                </tr>
+                        <tr>
 
-                {% endfor %}
+                            <th>
+                                <span class="lang-en">Crop</span>
+                                <span class="lang-gu">પાક</span>
+                            </th>
 
-            </table>
+                            <th>
+                                <span class="lang-en">Season</span>
+                                <span class="lang-gu">મોસમ</span>
+                            </th>
+
+                            <th>
+                                <span class="lang-en">Area</span>
+                                <span class="lang-gu">વિસ્તાર</span>
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                    {% for crop in farmer.crops %}
+
+                        <tr>
+
+                            <!-- ================= CROP NAME ================= -->
+
+                            <td>
+
+                                {% set crop_name = crop.crop_name|trim|lower %}
+
+                                {% if crop_name == "maize" %}
+                                    <span class="lang-en">Maize</span>
+                                    <span class="lang-gu">મકાઈ</span>
+
+                                {% elif crop_name == "wheat" %}
+                                    <span class="lang-en">Wheat</span>
+                                    <span class="lang-gu">ઘઉં</span>
+
+                                {% elif crop_name == "rice" %}
+                                    <span class="lang-en">Rice</span>
+                                    <span class="lang-gu">ચોખા</span>
+
+                                {% elif crop_name == "cotton" %}
+                                    <span class="lang-en">Cotton</span>
+                                    <span class="lang-gu">કપાસ</span>
+
+                                {% elif crop_name == "groundnut" %}
+                                    <span class="lang-en">Groundnut</span>
+                                    <span class="lang-gu">મગફળી</span>
+
+                                {% elif crop_name == "sugarcane" %}
+                                    <span class="lang-en">Sugarcane</span>
+                                    <span class="lang-gu">શેરડી</span>
+
+                                {% elif crop_name == "potato" %}
+                                    <span class="lang-en">Potato</span>
+                                    <span class="lang-gu">બટાકા</span>
+
+                                {% elif crop_name == "tomato" %}
+                                    <span class="lang-en">Tomato</span>
+                                    <span class="lang-gu">ટામેટા</span>
+
+                                {% elif crop_name == "onion" %}
+                                    <span class="lang-en">Onion</span>
+                                    <span class="lang-gu">ડુંગળી</span>
+
+                                {% elif crop_name == "bajra" %}
+                                    <span class="lang-en">Bajra</span>
+                                    <span class="lang-gu">બાજરી</span>
+
+                                {% elif crop_name == "millet" %}
+                                    <span class="lang-en">Millet</span>
+                                    <span class="lang-gu">બાજરી</span>
+
+                                {% elif crop_name == "mustard" %}
+                                    <span class="lang-en">Mustard</span>
+                                    <span class="lang-gu">સરસવ</span>
+
+                                {% elif crop_name == "gram" %}
+                                    <span class="lang-en">Gram</span>
+                                    <span class="lang-gu">ચણા</span>
+
+                                {% elif crop_name == "chickpea" %}
+                                    <span class="lang-en">Chickpea</span>
+                                    <span class="lang-gu">ચણા</span>
+
+                                {% elif crop_name == "pulses" %}
+                                    <span class="lang-en">Pulses</span>
+                                    <span class="lang-gu">કઠોળ</span>
+
+                                {% elif crop_name == "vegetables" %}
+                                    <span class="lang-en">Vegetables</span>
+                                    <span class="lang-gu">શાકભાજી</span>
+
+                                {% elif crop_name == "sesame" %}
+                                    <span class="lang-en">Sesame</span>
+                                    <span class="lang-gu">તલ</span>
+
+                                {% elif crop_name == "castor" %}
+                                    <span class="lang-en">Castor</span>
+                                    <span class="lang-gu">એરંડા</span>
+
+                                {% else %}
+                                    <span class="lang-en">{{ crop.crop_name }}</span>
+                                    <span class="lang-gu">{{ crop.crop_name }}</span>
+                                {% endif %}
+
+                            </td>
+
+
+                            <!-- ================= SEASON ================= -->
+
+                            <td>
+
+                                {% set season_name = crop.season|trim|lower %}
+
+                                {% if season_name == "kharif" %}
+
+                                    <span class="lang-en">Kharif</span>
+                                    <span class="lang-gu">ખરીફ</span>
+
+                                {% elif season_name == "rabi" %}
+
+                                    <span class="lang-en">Rabi</span>
+                                    <span class="lang-gu">રવિ</span>
+
+                                {% elif season_name == "zaid" %}
+
+                                    <span class="lang-en">Zaid</span>
+                                    <span class="lang-gu">ઝાયદ</span>
+
+                                {% else %}
+
+                                    <span class="lang-en">{{ crop.season }}</span>
+                                    <span class="lang-gu">{{ crop.season }}</span>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <!-- ================= AREA ================= -->
+
+                            <td>
+
+                                {{ crop.area }}
+
+                                <span class="lang-en">Acres</span>
+                                <span class="lang-gu">એકર</span>
+
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
 
             {% else %}
 
-            <p>No crops added yet.</p>
+                <p class="mt-3">
+                    <span class="lang-en">
+                        No crops added yet.
+                    </span>
+
+                    <span class="lang-gu">
+                        હજુ સુધી કોઈ પાક ઉમેરવામાં આવ્યો નથી.
+                    </span>
+                </p>
 
             {% endif %}
 

@@ -3,7 +3,8 @@
 <div class="container mt-5 mb-5">
     <div class="card shadow-lg border-0 p-4">
         <h2 class="text-success text-center mb-4">
-            🌿 AI Disease Detection Result
+            <span class="lang-en">🌿 AI Disease Detection Result</span>
+            <span class="lang-gu">🌿 AI રોગ શોધનું પરિણામ</span>
         </h2>
         <div class="row align-items-center">
             <!-- Uploaded Image -->
@@ -16,63 +17,60 @@
             <!-- Prediction -->
             <div class="col-md-7">
                 <h4>
-                    Disease:
+                    <span class="lang-en">Disease:</span>
+                    <span class="lang-gu">રોગ:</span>
                     <span class="badge bg-danger">
                         {{ disease }}
                     </span>
                 </h4>
                 <br>
-                <h5>Confidence: {{ confidence }}%</h5>
+                <h5>
+                    <span class="lang-en">Confidence:</span>
+                    <span class="lang-gu">વિશ્વાસનું પ્રમાણ:</span>
+                    {{ confidence }}%
+                </h5>
                 <div class="progress mb-4" style="height:25px;">
-    <div class="progress-bar bg-success"
-         id="confidenceBar"
-         role="progressbar">
-        {{ confidence }}%
-    </div>
-</div>
-
-<script>
-document.getElementById("confidenceBar").style.width = "{{ confidence }}%";
-</script>
-
-
+                    <div class="progress-bar bg-success"
+                         id="confidenceBar"
+                         role="progressbar"
+                         aria-valuenow="{{ confidence }}"
+                         aria-valuemin="0"
+                         aria-valuemax="100">
+                        {{ confidence }}%
+                    </div>
+                </div>
+                <script>
+                    document.getElementById("confidenceBar").style.width =
+                        "{{ confidence }}%";
+                </script>
                 <h5 class="text-success">
-                    💊 Treatment
+                    <span class="lang-en">💊 Treatment</span>
+                    <span class="lang-gu">💊 સારવાર</span>
                 </h5>
-
                 <p>{{ treatment }}</p>
-
                 <h5 class="text-primary">
-                    🛡 Prevention
+                    <span class="lang-en">🛡 Prevention</span>
+                    <span class="lang-gu">🛡 બચાવ</span>
                 </h5>
-
                 <p>{{ prevention }}</p>
-
                 <a href="{{ url_for('disease_detection') }}"
                    class="btn btn-success mt-3">
-
-                    Detect Another Image
-
+                    <span class="lang-en">Detect Another Image</span>
+                    <span class="lang-gu">બીજા પાનનો રોગ તપાસો</span>
                 </a>
                 <a href="{{ url_for(
-    'download_report',
-    disease=disease,
-    confidence=confidence,
-    treatment=treatment,
-    prevention=prevention
-) }}"
-class="btn btn-primary mt-3 ms-2">
-
-    📄 Download PDF Report
-
-</a>
-
+                    'download_report',
+                    disease=disease,
+                    confidence=confidence,
+                    treatment=treatment,
+                    prevention=prevention
+                ) }}"
+                   class="btn btn-primary mt-3 ms-2">
+                    <span class="lang-en">📄 Download PDF Report</span>
+                    <span class="lang-gu">📄 PDF રિપોર્ટ ડાઉનલોડ કરો</span>
+                </a>
             </div>
-
         </div>
-
     </div>
-
 </div>
-
 {% endblock %}

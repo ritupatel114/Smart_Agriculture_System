@@ -1,18 +1,36 @@
 {% extends "base.html" %}
-{% block title %}404 - Page Not Found{% endblock %}
+
+{% block title %}
+404 - Page Not Found
+{% endblock %}
+
 {% block content %}
+
 <div class="container text-center py-5">
+
     <h1 class="display-1 fw-bold text-success">
         404
     </h1>
+
     <h2 class="mb-3">
-        Oops! Page Not Found
+        <span class="lang-en">Oops! Page Not Found</span>
+        <span class="lang-gu">અરે! પેજ મળ્યું નથી</span>
     </h2>
+
     <p class="text-muted mb-4">
-        The page you are looking for doesn't exist or has been moved.
+        <span class="lang-en">
+            The page you are looking for doesn't exist or has been moved.
+        </span>
+        <span class="lang-gu">
+            તમે જે પેજ શોધી રહ્યા છો તે અસ્તિત્વમાં નથી અથવા અન્ય જગ્યાએ ખસેડવામાં આવ્યું છે.
+        </span>
     </p>
+
     <a href="{{ url_for('home') }}" class="btn btn-success btn-lg">
-        🏠 Back to Home
+        <span class="lang-en">🏠 Back to Home</span>
+        <span class="lang-gu">🏠 હોમ પેજ પર પાછા જાઓ</span>
     </a>
+
 </div>
+
 {% endblock %}

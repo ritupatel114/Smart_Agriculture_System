@@ -5,69 +5,136 @@
 <div class="container mt-5">
 
     <h2 class="text-center text-success mb-4">
-        🌾 Smart Crop Recommendation
+        🌾
+        <span class="lang-en">Smart Crop Recommendation</span>
+        <span class="lang-gu">સ્માર્ટ પાકની ભલામણ</span>
     </h2>
 
     <div class="card shadow">
+
         <div class="card-body">
 
             <form method="POST">
 
                 <div class="mb-3">
-                    <label class="form-label">Soil Type</label>
+
+                    <label class="form-label">
+                        <span class="lang-en">Soil Type</span>
+                        <span class="lang-gu">જમીનનો પ્રકાર</span>
+                    </label>
+
                     <select class="form-select" name="soil" required>
-                        <option value="">Select Soil Type</option>
-                        <option>Loamy</option>
-                        <option>Clay</option>
-                        <option>Sandy</option>
-                        <option>Black Soil</option>
-                        <option>Red Soil</option>
+
+                        <option value="">
+                            <span class="lang-en">Select Soil Type</span>/
+                            <span class="lang-gu">જમીનનો પ્રકાર પસંદ કરો</span>
+                        </option>
+
+                        <option value="Loamy">Loamy / ગોરાડુ જમીન</option>
+                        <option value="Clay">Clay / ચીકણી જમીન</option>
+                        <option value="Sandy">Sandy / રેતાળ જમીન</option>
+                        <option value="Black Soil">Black Soil / કાળી જમીન</option>
+                        <option value="Red Soil">Red Soil / લાલ જમીન</option>
+
                     </select>
+
                 </div>
 
+
                 <div class="mb-3">
-                    <label class="form-label">Season</label>
+
+                    <label class="form-label">
+                        <span class="lang-en">Season</span>
+                        <span class="lang-gu">મોસમ</span>
+                    </label>
+
                     <select class="form-select" name="season" required>
-                        <option value="">Select Season</option>
-                        <option>Kharif</option>
-                        <option>Rabi</option>
-                        <option>Zaid</option>
+
+                        <option value="">
+                            <span class="lang-en">Select Season</span>/
+                            <span class="lang-gu">મોસમ પસંદ કરો</span>
+                        </option>
+
+                        <option value="Kharif">Kharif / ખરીફ</option>
+                        <option value="Rabi">Rabi / રવિ</option>
+                        <option value="Zaid">Zaid / ઝાયદ</option>
+
                     </select>
+
                 </div>
 
+
                 <div class="mb-3">
-                    <label class="form-label">Soil pH</label>
-                    <input type="number" step="0.1" name="ph" class="form-control" required>
+
+                    <label class="form-label">
+                        <span class="lang-en">Soil pH</span>
+                        <span class="lang-gu">જમીનનું pH</span>
+                    </label>
+
+                    <input
+                        type="number"
+                        step="0.1"
+                        name="ph"
+                        class="form-control"
+                        required>
+
                 </div>
+
 
                 <button type="submit" class="btn btn-success">
-                    Recommend Crop
+
+                    <span class="lang-en">Recommend Crop</span>
+                    <span class="lang-gu">પાકની ભલામણ કરો</span>
+
                 </button>
 
             </form>
 
         </div>
+
     </div>
 
-    {% if crop %}
 
-    <div class="card shadow mt-4 border-success">
-        <div class="card-header bg-success text-white">
-            Recommendation Result
-        </div>
+   {% if crop %}
 
-        <div class="card-body text-center">
+<div class="card shadow mt-4 border-success">
 
-            <h3 class="text-success">
-                Recommended Crop
-            </h3>
+    <div class="card-header bg-success text-white">
 
-            <h2>{{ crop }}</h2>
+        <span class="lang-en">Recommendation Result</span>
+        <span class="lang-gu">ભલામણનું પરિણામ</span>
 
-        </div>
     </div>
 
-    {% endif %}
+    <div class="card-body text-center">
+
+        <h3 class="text-success">
+
+            <span class="lang-en">Recommended Crop</span>
+            <span class="lang-gu">ભલામણ કરેલ પાક</span>
+
+        </h3>
+
+        {% set crop_gu = {
+            'Maize': 'મકાઈ',
+            'Wheat': 'ઘઉં',
+            'Rice': 'ચોખા',
+            'Cotton': 'કપાસ',
+            'Sugarcane': 'શેરડી',
+            'Groundnut': 'મગફળી',
+            'Potato': 'બટાકા',
+            'Tomato': 'ટામેટા',
+            'Onion': 'ડુંગળી'
+        }.get(crop, crop) %}
+
+        <h2 class="lang-en">{{ crop }}</h2>
+        <h2 class="lang-gu">{{ crop_gu }}</h2>
+
+    </div>
+
+</div>
+
+{% endif %}
 
 </div>
 

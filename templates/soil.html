@@ -7,7 +7,9 @@
 <div class="container mt-4">
 
     <h2 class="text-success text-center mb-4">
-        🌱 Soil Health Analysis
+        🌱
+        <span class="lang-en">Soil Health Analysis</span>
+        <span class="lang-gu">જમીનની તંદુરસ્તીનું વિશ્લેષણ</span>
     </h2>
 
     <div class="card shadow p-4">
@@ -15,18 +17,31 @@
         <form method="POST">
 
             <div class="mb-3">
-                <label class="form-label">Soil Type</label>
+                <label class="form-label">
+                    <span class="lang-en">Soil Type</span>
+                    <span class="lang-gu">જમીનનો પ્રકાર</span>
+                </label>
+
                 <select class="form-select" name="soil_type" required>
-                    <option value="">Select Soil Type</option>
-                    <option value="Loamy">Loamy</option>
-                    <option value="Clay">Clay</option>
-                    <option value="Sandy">Sandy</option>
-                    <option value="Black Soil">Black Soil</option>
+                    <option value="">
+                        <span class="lang-en">Select Soil Type</span>
+                        <span class="lang-gu">જમીનનો પ્રકાર પસંદ કરો</span>
+                    </option>
+
+                    <option value="Loamy">Loamy / ગોરાડુ</option>
+                    <option value="Clay">Clay / ચીકણી જમીન</option>
+                    <option value="Sandy">Sandy / રેતાળ જમીન</option>
+                    <option value="Black Soil">Black Soil / કાળી જમીન</option>
                 </select>
             </div>
 
+
             <div class="mb-3">
-                <label class="form-label">pH Value</label>
+                <label class="form-label">
+                    <span class="lang-en">pH Value</span>
+                    <span class="lang-gu">pH મૂલ્ય</span>
+                </label>
+
                 <input type="number"
                        class="form-control"
                        step="0.1"
@@ -34,70 +49,195 @@
                        required>
             </div>
 
+
             <div class="mb-3">
-                <label class="form-label">Nitrogen (N)</label>
+                <label class="form-label">
+                    <span class="lang-en">Nitrogen (N)</span>
+                    <span class="lang-gu">નાઇટ્રોજન (N)</span>
+                </label>
+
                 <input type="number"
                        class="form-control"
                        name="nitrogen"
                        required>
             </div>
 
+
             <div class="mb-3">
-                <label class="form-label">Phosphorus (P)</label>
+                <label class="form-label">
+                    <span class="lang-en">Phosphorus (P)</span>
+                    <span class="lang-gu">ફોસ્ફરસ (P)</span>
+                </label>
+
                 <input type="number"
                        class="form-control"
                        name="phosphorus"
                        required>
             </div>
 
+
             <div class="mb-3">
-                <label class="form-label">Potassium (K)</label>
+                <label class="form-label">
+                    <span class="lang-en">Potassium (K)</span>
+                    <span class="lang-gu">પોટેશિયમ (K)</span>
+                </label>
+
                 <input type="number"
                        class="form-control"
                        name="potassium"
                        required>
             </div>
 
+
             <button class="btn btn-success w-100">
-                Analyze Soil
+                <span class="lang-en">Analyze Soil</span>
+                <span class="lang-gu">જમીનનું વિશ્લેષણ કરો</span>
             </button>
 
         </form>
 
     </div>
 
-    {% if result %}
 
-    <div class="card shadow mt-4">
+   {% if result %}
 
-        <div class="card-header bg-success text-white">
-            <h4>Analysis Result</h4>
-        </div>
+<div class="card shadow mt-4">
 
-        <div class="card-body">
+    <div class="card-header bg-success text-white">
+        <h4>
+            <span class="lang-en">Analysis Result</span>
+            <span class="lang-gu">વિશ્લેષણનું પરિણામ</span>
+        </h4>
+    </div>
 
-            <h5>🌾 Soil Type</h5>
+    <div class="card-body">
+
+        <h5>🌾
+            <span class="lang-en">Soil Type</span>
+            <span class="lang-gu">જમીનનો પ્રકાર</span>
+        </h5>
+
+        {% if result.soil_type == "Loamy" %}
+            <p>
+                <span class="lang-en">Loamy</span>
+                <span class="lang-gu">ગોરાડુ જમીન</span>
+            </p>
+
+        {% elif result.soil_type == "Clay" %}
+            <p>
+                <span class="lang-en">Clay</span>
+                <span class="lang-gu">ચીકણી જમીન</span>
+            </p>
+
+        {% elif result.soil_type == "Sandy" %}
+            <p>
+                <span class="lang-en">Sandy</span>
+                <span class="lang-gu">રેતાળ જમીન</span>
+            </p>
+
+        {% elif result.soil_type == "Black Soil" %}
+            <p>
+                <span class="lang-en">Black Soil</span>
+                <span class="lang-gu">કાળી જમીન</span>
+            </p>
+
+        {% elif result.soil_type == "Red Soil" %}
+            <p>
+                <span class="lang-en">Red Soil</span>
+                <span class="lang-gu">લાલ જમીન</span>
+            </p>
+
+        {% else %}
             <p>{{ result.soil_type }}</p>
+        {% endif %}
 
-            <h5>💚 Soil Health</h5>
-            <p>{{ result.health }}</p>
 
-            <h5>🧪 pH Status</h5>
-            <p>{{ result.ph_status }}</p>
+        <h5>💚
+            <span class="lang-en">Soil Health</span>
+            <span class="lang-gu">જમીનની તંદુરસ્તી</span>
+        </h5>
 
-            <h5>🌿 Fertilizer Recommendation</h5>
+        {% if result.health == "Soil is Healthy" %}
+            <p>
+                <span class="lang-en">✅ Soil is Healthy</span>
+                <span class="lang-gu">✅ જમીન સ્વસ્થ છે</span>
+            </p>
+        {% else %}
+            <p>
+                <span class="lang-en">⚠️ Soil Needs Improvement</span>
+                <span class="lang-gu">⚠️ જમીનમાં સુધારાની જરૂર છે</span>
+            </p>
+        {% endif %}
 
-            <ul>
-                {% for item in result.recommendation %}
-                <li>{{ item }}</li>
-                {% endfor %}
-            </ul>
 
-        </div>
+        <h5>🧪
+            <span class="lang-en">pH Status</span>
+            <span class="lang-gu">pH સ્થિતિ</span>
+        </h5>
+
+        {% if result.ph_status == "Acidic Soil" %}
+            <p>
+                <span class="lang-en">Acidic Soil</span>
+                <span class="lang-gu">એસિડિક જમીન</span>
+            </p>
+
+        {% elif result.ph_status == "Neutral Soil" %}
+            <p>
+                <span class="lang-en">Neutral Soil</span>
+                <span class="lang-gu">તટસ્થ જમીન</span>
+            </p>
+
+        {% else %}
+            <p>
+                <span class="lang-en">Alkaline Soil</span>
+                <span class="lang-gu">ક્ષારીય જમીન</span>
+            </p>
+        {% endif %}
+
+
+        <h5>🌿
+            <span class="lang-en">Fertilizer Recommendation</span>
+            <span class="lang-gu">ખાતરની ભલામણ</span>
+        </h5>
+
+        <ul>
+
+            {% for item in result.recommendation %}
+
+                {% if item == "Apply Urea Fertilizer." %}
+                    <li>
+                        <span class="lang-en">Apply Urea Fertilizer.</span>
+                        <span class="lang-gu">યુરિયા ખાતરનો ઉપયોગ કરો.</span>
+                    </li>
+
+                {% elif item == "Apply DAP Fertilizer." %}
+                    <li>
+                        <span class="lang-en">Apply DAP Fertilizer.</span>
+                        <span class="lang-gu">DAP ખાતરનો ઉપયોગ કરો.</span>
+                    </li>
+
+                {% elif item == "Apply MOP Fertilizer." %}
+                    <li>
+                        <span class="lang-en">Apply MOP Fertilizer.</span>
+                        <span class="lang-gu">MOP ખાતરનો ઉપયોગ કરો.</span>
+                    </li>
+
+                {% else %}
+                    <li>
+                        <span class="lang-en">No fertilizer required.</span>
+                        <span class="lang-gu">કોઈ ખાતરની જરૂર નથી.</span>
+                    </li>
+                {% endif %}
+
+            {% endfor %}
+
+        </ul>
 
     </div>
 
-    {% endif %}
+</div>
+
+{% endif %}
 
 </div>
 

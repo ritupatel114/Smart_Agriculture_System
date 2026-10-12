@@ -1,129 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>{% block title %}Smart Agriculture Management System{% endblock %}</title>
+
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Bootstrap Icons -->
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     <!-- Font Awesome -->
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+
     <!-- CSS -->
     <link rel="stylesheet"
         href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
+
 <!-- ================= NAVBAR ================= -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-success shadow-sm sticky-top">
+
     <div class="container">
 
         <a class="navbar-brand fw-bold" href="/">
             🌱 Smart Agriculture
-        </a>  
-        <button class="navbar-toggler" type="button"
+        </a>
+
+        <button class="navbar-toggler"
+                type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#navbarNav">
+
             <span class="navbar-toggler-icon"></span>
+
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
+
             <ul class="navbar-nav ms-auto align-items-lg-center">
-                <ul class="navbar-nav ms-auto align-items-lg-center">
 
-    <li class="nav-item">
-        <a class="nav-link" href="/">🏠 Home</a>
-    </li>
+                <!-- HOME -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/">
+                        🏠 <span class="lang-en">Home</span>
+                        <span class="lang-gu">હોમ</span>
+                    </a>
+                </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="/contact">📞 Contact</a>
-    </li>
+                <!-- CONTACT -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">
+                        📞 <span class="lang-en">Contact</span>
+                        <span class="lang-gu">સંપર્ક</span>
+                    </a>
+                </li>
 
-    {% if session.get('admin') %}
-
-    <li class="nav-item">
-        <a class="nav-link" href="/dashboard">📋 Dashboard</a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="/farmers">👨‍🌾 Farmers</a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="/crops">🌾 Crops</a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="/reports">📊 Reports</a>
-    </li>
-    <li class="nav-item">
-    <span class="nav-link text-white">
-        👤 Welcome,{{ session['admin'] }}
-    </span>
+<!-- IRRIGATION CALCULATOR -->
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('irrigation') }}">
+        💧 <span class="lang-en">Irrigation Calculator</span>
+        <span class="lang-gu">સિંચાઈ કેલ્ક્યુલેટર</span>
+    </a>
 </li>
 
-    <li class="nav-item">
-        <a class="nav-link text-warning" href="/logout">🚪 Logout</a>
-    </li>
+<!-- MANUAL DISEASE DIAGNOSIS -->
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('disease') }}">
+        🌿 <span class="lang-en">Disease Diagnosis</span>
+        <span class="lang-gu">રોગ નિદાન</span>
+    </a>
+</li>
 
-    {% else %}
+                {% if session.get('admin') %}
 
-    <li class="nav-item">
-        <a class="nav-link" href="/login">🔐 Login</a>
-    </li>
+                <!-- DASHBOARD -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">
+                        📋 <span class="lang-en">Dashboard</span>
+                        <span class="lang-gu">ડેશબોર્ડ</span>
+                    </a>
+                </li>
 
-    {% endif %}
+                <!-- FARMERS -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/farmers">
+                        👨‍🌾 <span class="lang-en">Farmers</span>
+                        <span class="lang-gu">ખેડૂતો</span>
+                    </a>
+                </li>
 
-</ul>
-                <!-- AI Services Dropdown -->
-                <li class="nav-item dropdown">
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/weather">🌦 Weather</a></li>
-                        <li><a class="dropdown-item" href="/soil">🌱 Soil Analysis</a></li>
-                        <li><a class="dropdown-item" href="/fertilizer">💧 Fertilizer</a></li>
-                        <li><a class="dropdown-item" href="/irrigation">🚿 Irrigation</a></li>
-                        <li><a class="dropdown-item" href="/disease">🍂 Disease Detection</a></li>
-                        <li><a class="dropdown-item" href="/recommendation">🌾 Crop Recommendation</a></li>
-                    </ul>
+                <!-- CROPS -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/crops">
+                        🌾 <span class="lang-en">Crops</span>
+                        <span class="lang-gu">પાક</span>
+                    </a>
+                </li>
+
+                <!-- REPORTS -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/reports">
+                        📊 <span class="lang-en">Reports</span>
+                        <span class="lang-gu">અહેવાલ</span>
+                    </a>
+                </li>
+
+                <!-- WELCOME -->
+                <li class="nav-item">
+                    <span class="nav-link text-white">
+                        👤 <span class="lang-en">Welcome,</span>
+                        <span class="lang-gu">સ્વાગત છે,</span>
+                        {{ session['admin'] }}
+                    </span>
+                </li>
+
+                <!-- LOGOUT -->
+                <li class="nav-item">
+                    <a class="nav-link text-warning" href="/logout">
+                        🚪 <span class="lang-en">Logout</span>
+                        <span class="lang-gu">લૉગઆઉટ</span>
+                    </a>
+                </li>
+
+                {% else %}
+
+                <!-- LOGIN -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">
+                        🔐 <span class="lang-en">Login</span>
+                        <span class="lang-gu">લૉગિન</span>
+                    </a>
+                </li>
+
+                {% endif %}
+
+                <!-- LANGUAGE BUTTON -->
+
+                <li class="nav-item ms-lg-2">
+
+                    <button type="button"
+                            class="btn btn-light btn-sm"
+                            onclick="toggleLanguage()">
+
+                        🌐 <span id="languageButton">ગુજરાતી</span>
+
+                    </button>
+
+                </li>
+
             </ul>
 
         </div>
+
     </div>
+
 </nav>
+
+
 <!-- ================= FLASH MESSAGES ================= -->
 
 <div class="container mt-3">
 
     {% with messages = get_flashed_messages(with_categories=true) %}
+
         {% if messages %}
 
             {% for category, message in messages %}
 
-                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                <div class="alert alert-{{ category }} alert-dismissible fade show"
+                     role="alert">
 
                     {{ message }}
 
                     <button type="button"
                             class="btn-close"
-                            data-bs-dismiss="alert"></button>
+                            data-bs-dismiss="alert">
+                    </button>
 
                 </div>
 
             {% endfor %}
 
         {% endif %}
+
     {% endwith %}
 
 </div>
+
 
 <!-- ================= PAGE CONTENT ================= -->
 
@@ -131,129 +210,238 @@
 
 {% endblock %}
 
-<!-- Scroll To Top Button -->
+
+<!-- ================= SCROLL TO TOP ================= -->
 
 <button id="topBtn" class="btn btn-success">
     ⬆
 </button>
 
+
 <!-- ================= FOOTER ================= -->
 
 <footer class="bg-dark text-white mt-5 pt-5 pb-3">
 
-<div class="container">
+    <div class="container">
 
-<div class="row">
+        <div class="row">
 
-<div class="col-lg-4 mb-4">
+            <!-- ABOUT -->
 
-<h4 class="text-success">
+            <div class="col-lg-4 mb-4">
 
-🌱 Smart Agriculture
+                <h4 class="text-success">
+                    🌱 Smart Agriculture
+                </h4>
 
-</h4>
+                <p>
 
-<p>
+                    <span class="lang-en">
+                        AI Powered Agriculture Management System for modern farmers.
+                    </span>
 
-AI Powered Agriculture Management System for modern farmers.
+                    <span class="lang-gu">
+                        આધુનિક ખેડૂતો માટે AI આધારિત કૃષિ વ્યવસ્થાપન સિસ્ટમ.
+                    </span>
 
-</p>
+                </p>
 
-</div>
+            </div>
 
-<div class="col-lg-4 mb-4">
 
-<h5>Quick Links</h5>
+            <!-- QUICK LINKS -->
 
-<ul class="list-unstyled">
+            <div class="col-lg-4 mb-4">
 
-<li><a href="{{ url_for('home') }}" class="text-white text-decoration-none">Home</a></li>
+                <h5>
+                    <span class="lang-en">Quick Links</span>
+                    <span class="lang-gu">મહત્વપૂર્ણ લિંક્સ</span>
+                </h5>
 
-<li><a href="{{ url_for('farmers') }}" class="text-white text-decoration-none">Farmers</a></li>
+                <ul class="list-unstyled">
 
-<li><a href="{{ url_for('crops') }}" class="text-white text-decoration-none">Crops</a></li>
+                    <li>
+                        <a href="{{ url_for('home') }}"
+                           class="text-white text-decoration-none">
 
-<li><a href="{{ url_for('reports') }}" class="text-white text-decoration-none">Reports</a></li>
+                            <span class="lang-en">Home</span>
+                            <span class="lang-gu">હોમ</span>
 
-</ul>
+                        </a>
+                    </li>
 
-</div>
+                    <li>
+                        <a href="{{ url_for('farmers') }}"
+                           class="text-white text-decoration-none">
 
-<div class="col-lg-4">
+                            <span class="lang-en">Farmers</span>
+                            <span class="lang-gu">ખેડૂતો</span>
 
-<h5>Contact</h5>
+                        </a>
+                    </li>
 
-<p>
+                    <li>
+                        <a href="{{ url_for('crops') }}"
+                           class="text-white text-decoration-none">
 
-<i class="bi bi-envelope-fill text-success"></i>
+                            <span class="lang-en">Crops</span>
+                            <span class="lang-gu">પાક</span>
 
-smartagriculture@gmail.com
+                        </a>
+                    </li>
 
-</p>
+                    <li>
+                        <a href="{{ url_for('reports') }}"
+                           class="text-white text-decoration-none">
 
-<p>
+                            <span class="lang-en">Reports</span>
+                            <span class="lang-gu">અહેવાલ</span>
 
-<i class="bi bi-telephone-fill text-success"></i>
+                        </a>
+                    </li>
 
-+91 98765 43210
+                </ul>
 
-</p>
+            </div>
 
-<p>
 
-<i class="bi bi-geo-alt-fill text-success"></i>
+            <!-- CONTACT -->
 
-India
+            <div class="col-lg-4">
 
-</p>
-<!-- ------------ SOCIAL ICONS ------------ -->
-<div class="mt-3">
+                <h5>
+                    <span class="lang-en">Contact</span>
+                    <span class="lang-gu">સંપર્ક</span>
+                </h5>
 
-    <a href="#" class="text-white me-3">
-        <i class="fab fa-facebook fa-2x"></i>
-    </a>
+                <p>
+                    <i class="bi bi-envelope-fill text-success"></i>
+                    smartagriculture@gmail.com
+                </p>
 
-    <a href="#" class="text-white me-3">
-        <i class="fab fa-instagram fa-2x"></i>
-    </a>
+                <p>
+                    <i class="bi bi-telephone-fill text-success"></i>
+                    +91 98765 43210
+                </p>
 
-    <a href="#" class="text-white me-3">
-        <i class="fab fa-linkedin fa-2x"></i>
-    </a>
+                <p>
+                    <i class="bi bi-geo-alt-fill text-success"></i>
 
-    <a href="#" class="text-white">
-        <i class="fab fa-github fa-2x"></i>
-    </a>
+                    <span class="lang-en">India</span>
+                    <span class="lang-gu">ભારત</span>
 
-</div>
+                </p>
 
-</div>
+                <!-- SOCIAL ICONS -->
 
-</div>
+                <div class="mt-3">
 
-<hr>
+                    <a href="#" class="text-white me-3">
+                        <i class="fab fa-facebook fa-2x"></i>
+                    </a>
 
-<div class="text-center">
+                    <a href="#" class="text-white me-3">
+                        <i class="fab fa-instagram fa-2x"></i>
+                    </a>
 
-<p>
+                    <a href="#" class="text-white me-3">
+                        <i class="fab fa-linkedin fa-2x"></i>
+                    </a>
 
-© 2026 Smart Agriculture Management System
+                    <a href="#" class="text-white">
+                        <i class="fab fa-github fa-2x"></i>
+                    </a>
 
-</p>
+                </div>
 
-<p>
+            </div>
 
-Developed by <strong>Ritu Patel</strong>
+        </div>
 
-</p>
 
-</div>
+        <hr>
 
-</div>
+
+        <div class="text-center">
+
+            <p>
+                © 2026 Smart Agriculture Management System
+            </p>
+
+            <p>
+                Developed by <strong>Ritu Patel</strong>
+            </p>
+
+        </div>
+
+    </div>
 
 </footer>
 
+
+<!-- ================= LANGUAGE SCRIPT ================= -->
+
 <script>
+
+function setLanguage(language) {
+
+    if (language === "gu") {
+
+        document.querySelectorAll(".lang-en").forEach(function(element) {
+            element.style.display = "none";
+        });
+
+        document.querySelectorAll(".lang-gu").forEach(function(element) {
+            element.style.display = "inline";
+        });
+
+        document.getElementById("languageButton").innerText = "English";
+
+        localStorage.setItem("language", "gu");
+
+    } else {
+
+        document.querySelectorAll(".lang-en").forEach(function(element) {
+            element.style.display = "inline";
+        });
+
+        document.querySelectorAll(".lang-gu").forEach(function(element) {
+            element.style.display = "none";
+        });
+
+        document.getElementById("languageButton").innerText = "ગુજરાતી";
+
+        localStorage.setItem("language", "en");
+    }
+}
+
+
+function toggleLanguage() {
+
+    let currentLanguage = localStorage.getItem("language") || "en";
+
+    if (currentLanguage === "en") {
+
+        setLanguage("gu");
+
+    } else {
+
+        setLanguage("en");
+
+    }
+}
+
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    let savedLanguage = localStorage.getItem("language") || "en";
+
+    setLanguage(savedLanguage);
+
+});
+
+
+/* ================= SCROLL TO TOP ================= */
 
 const topBtn = document.getElementById("topBtn");
 
@@ -285,7 +473,10 @@ topBtn.onclick = function () {
 };
 
 </script>
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>

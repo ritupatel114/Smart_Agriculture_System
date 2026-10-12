@@ -7,65 +7,87 @@
     <div class="card shadow">
 
         <div class="card-header bg-success text-white">
-            <h3>Add Farmer</h3>
+            <h3>
+                <span class="lang-en">Add Farmer</span>
+                <span class="lang-gu">ખેડૂત ઉમેરો</span>
+            </h3>
         </div>
 
         <div class="card-body">
 
             <form method="POST">
 
-    <div class="mb-3">
-        <label>Name</label>
-        <input
-            type="text"
-            name="name"
-            class="form-control"
-            value="{{ farmer.name if farmer else '' }}"
-            required>
-    </div>
+                <div class="mb-3">
+                    <label>
+                        <span class="lang-en">Name</span>
+                        <span class="lang-gu">નામ</span>
+                    </label>
 
-    <div class="mb-3">
-        <label>Village</label>
-        <input
-            type="text"
-            name="village"
-            class="form-control"
-            value="{{ farmer.village if farmer else '' }}"
-            required>
-    </div>
+                    <input
+                        type="text"
+                        name="name"
+                        class="form-control"
+                        value="{{ farmer.name if farmer else '' }}"
+                        required>
+                </div>
 
-    <div class="mb-3">
-        <label>Mobile</label>
-        <input
-            type="text"
-            name="mobile"
-            class="form-control"
-            value="{{ farmer.mobile if farmer else '' }}"
-            required>
-    </div>
 
-    <div class="mb-3">
-        <label>Land (Acres)</label>
-        <input
-            type="number"
-            step="0.01"
-            name="land"
-            class="form-control"
-            value="{{ farmer.land if farmer else '' }}"
-            required>
-    </div>
+                <div class="mb-3">
+                    <label>
+                        <span class="lang-en">Village</span>
+                        <span class="lang-gu">ગામ</span>
+                    </label>
 
-    <button class="btn btn-success">
-        Save Farmer
-    </button>
+                    <input
+                        type="text"
+                        name="village"
+                        class="form-control"
+                        value="{{ farmer.village if farmer else '' }}"
+                        required>
+                </div>
 
-    <a href="{{ url_for('farmers') }}" class="btn btn-secondary">
-        Cancel
-    </a>
 
-</form>
-                <a href="/farmers" class="btn btn-secondary">
-                    Cancel
+                <div class="mb-3">
+                    <label>
+                        <span class="lang-en">Mobile</span>
+                        <span class="lang-gu">મોબાઇલ નંબર</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        name="mobile"
+                        class="form-control"
+                        value="{{ farmer.mobile if farmer else '' }}"
+                        required>
+                </div>
+
+
+                <div class="mb-3">
+                    <label>
+                        <span class="lang-en">Land (Acres)</span>
+                        <span class="lang-gu">જમીન (એકર)</span>
+                    </label>
+
+                    <input
+                        type="number"
+                        step="0.01"
+                        name="land"
+                        class="form-control"
+                        value="{{ farmer.land if farmer else '' }}"
+                        required>
+                </div>
+
+
+                <button class="btn btn-success">
+                    <span class="lang-en">Save Farmer</span>
+                    <span class="lang-gu">ખેડૂત સાચવો</span>
+                </button>
+
+
+                <a href="{{ url_for('farmers') }}"
+                   class="btn btn-secondary">
+                    <span class="lang-en">Cancel</span>
+                    <span class="lang-gu">રદ કરો</span>
                 </a>
 
             </form>

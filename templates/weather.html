@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block title %}Live Weather{% endblock %}
+
 {% block content %}
 
 <div class="container mt-5">
@@ -7,10 +9,21 @@
     <div class="card shadow">
 
         <div class="card-header bg-primary text-white">
-            <h3>🌦 Live Weather</h3>
+            <h3>
+                🌦
+                <span class="lang-en">Live Weather</span>
+                <span class="lang-gu">હવામાનની માહિતી</span>
+            </h3>
         </div>
 
         <div class="card-body">
+
+            {% if error %}
+            <div class="alert alert-danger">
+                <span class="lang-en">{{ error }}</span>
+                <span class="lang-gu">હવામાનની માહિતી મેળવવામાં સમસ્યા આવી. શહેરનું નામ તપાસીને ફરી પ્રયાસ કરો.</span>
+            </div>
+            {% endif %}
 
             <form method="POST">
 
@@ -21,10 +34,13 @@
                         name="city"
                         class="form-control"
                         placeholder="Enter City Name"
+                        data-placeholder-en="Enter City Name"
+                        data-placeholder-gu="શહેરનું નામ લખો"
                         required>
 
-                    <button class="btn btn-primary">
-                        Search
+                    <button type="submit" class="btn btn-primary">
+                        <span class="lang-en">Search</span>
+                        <span class="lang-gu">શોધો</span>
                     </button>
 
                 </div>
@@ -37,13 +53,33 @@
 
                 <h4>{{ weather.city }}</h4>
 
-                <p>🌡 Temperature : {{ weather.temperature }} °C</p>
+                <p>
+                    🌡
+                    <span class="lang-en">Temperature:</span>
+                    <span class="lang-gu">તાપમાન:</span>
+                    {{ weather.temperature }} °C
+                </p>
 
-                <p>💧 Humidity : {{ weather.humidity }}%</p>
+                <p>
+                    💧
+                    <span class="lang-en">Humidity:</span>
+                    <span class="lang-gu">ભેજ:</span>
+                    {{ weather.humidity }}%
+                </p>
 
-                <p>🌬 Wind Speed : {{ weather.wind }} m/s</p>
+                <p>
+                    🌬
+                    <span class="lang-en">Wind Speed:</span>
+                    <span class="lang-gu">પવનની ગતિ:</span>
+                    {{ weather.wind }} m/s
+                </p>
 
-                <p>☁ Weather : {{ weather.condition }}</p>
+                <p>
+                    ☁
+                    <span class="lang-en">Weather:</span>
+                    <span class="lang-gu">હવામાન:</span>
+                    {{ weather.condition }}
+                </p>
 
             </div>
 
@@ -55,9 +91,26 @@
 
 </div>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    function updateCityPlaceholder() {
+        const input = document.querySelector('input[name="city"]');
+        if (!input) return;
+
+        const language = localStorage.getItem("language") || "en";
+        input.placeholder = language === "gu"
+            ? input.dataset.placeholderGu
+            : input.dataset.placeholderEn;
+    }
+
+    updateCityPlaceholder();
+
+    const languageButton = document.getElementById("languageButton");
+    if (languageButton) {
+        languageButton.addEventListener("click", function () {
+            setTimeout(updateCityPlaceholder, 0);
+        });
+    }
+});
+</script>
 {% endblock %}
-{% if error %}
-<div class="alert alert-danger">
-    {{ error }}
-</div>
-{% endif %}

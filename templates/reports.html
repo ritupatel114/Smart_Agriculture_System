@@ -4,33 +4,53 @@
 
 <div class="container mt-5">
 
-    <h2 class="text-center mb-4">Agriculture Reports</h2>
+    <h2 class="text-center mb-4">
+        <span class="lang-en">Agriculture Reports</span>
+        <span class="lang-gu">કૃષિ અહેવાલો</span>
+    </h2>
 
     <div class="row">
 
+        <!-- Total Farmers -->
         <div class="col-md-4">
             <div class="card bg-success text-white shadow">
                 <div class="card-body text-center">
-                    <h5>Total Farmers</h5>
+                    <h5>
+                        <span class="lang-en">Total Farmers</span>
+                        <span class="lang-gu">કુલ ખેડૂતો</span>
+                    </h5>
                     <h2>{{ total_farmers }}</h2>
                 </div>
             </div>
         </div>
 
+        <!-- Total Crops -->
         <div class="col-md-4">
             <div class="card bg-primary text-white shadow">
                 <div class="card-body text-center">
-                    <h5>Total Crops</h5>
+                    <h5>
+                        <span class="lang-en">Total Crops</span>
+                        <span class="lang-gu">કુલ પાક</span>
+                    </h5>
                     <h2>{{ total_crops }}</h2>
                 </div>
             </div>
         </div>
 
+        <!-- Total Land -->
         <div class="col-md-4">
             <div class="card bg-warning text-dark shadow">
                 <div class="card-body text-center">
-                    <h5>Total Land</h5>
-                    <h2>{{ total_land }} Acres</h2>
+                    <h5>
+                        <span class="lang-en">Total Land</span>
+                        <span class="lang-gu">કુલ જમીન</span>
+                    </h5>
+
+                    <h2>
+                        {{ total_land }}
+                        <span class="lang-en">Acres</span>
+                        <span class="lang-gu">એકર</span>
+                    </h2>
                 </div>
             </div>
         </div>
@@ -39,33 +59,55 @@
 
     <hr class="my-5">
 
-    <h3>Farmer List</h3>
+    <h3 class="mb-3">
+        <span class="lang-en">Farmer List</span>
+        <span class="lang-gu">ખેડૂતોની યાદી</span>
+    </h3>
 
     <table class="table table-bordered table-striped">
 
         <thead class="table-success">
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Village</th>
-                <th>Mobile</th>
-                <th>Land</th>
+                <th>
+                    <span class="lang-en">ID</span>
+                    <span class="lang-gu">આઈડી</span>
+                </th>
+
+                <th>
+                    <span class="lang-en">Name</span>
+                    <span class="lang-gu">નામ</span>
+                </th>
+
+                <th>
+                    <span class="lang-en">Village</span>
+                    <span class="lang-gu">ગામ</span>
+                </th>
+
+                <th>
+                    <span class="lang-en">Mobile</span>
+                    <span class="lang-gu">મોબાઇલ</span>
+                </th>
+
+                <th>
+                    <span class="lang-en">Land</span>
+                    <span class="lang-gu">જમીન</span>
+                </th>
             </tr>
         </thead>
 
         <tbody>
 
-        {% for farmer in farmers %}
+            {% for farmer in farmers %}
 
-        <tr>
-            <td>{{ farmer.id }}</td>
-            <td>{{ farmer.name }}</td>
-            <td>{{ farmer.village }}</td>
-            <td>{{ farmer.mobile }}</td>
-            <td>{{ farmer.land }}</td>
-        </tr>
+            <tr>
+                <td>{{ farmer.id }}</td>
+                <td>{{ farmer.name }}</td>
+                <td>{{ farmer.village }}</td>
+                <td>{{ farmer.mobile }}</td>
+                <td>{{ farmer.land }}</td>
+            </tr>
 
-        {% endfor %}
+            {% endfor %}
 
         </tbody>
 

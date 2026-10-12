@@ -72,7 +72,7 @@ def home():
 @app.route("/news")
 def news():
 
-    API_KEY = "74d60f60d070498ce2c0d29891eb5f9b"
+    API_KEY = "760d8ed193423fd877e71eec21eff9ec"
 
     url = "https://gnews.io/api/v4/search"
 
@@ -347,35 +347,27 @@ def fertilizer():
     if request.method == "POST":
 
         crop = request.form["crop"]
-
         soil = request.form["soil"]
 
         if crop == "Rice":
-
-            recommendation = "Recommended: Urea + Potash"
+            recommendation = "Urea + Potash"
 
         elif crop == "Wheat":
-
-            recommendation = "Recommended: Urea + DAP"
+            recommendation = "Urea + DAP"
 
         elif crop == "Cotton":
-
-            recommendation = "Recommended: NPK (20:20:20)"
+            recommendation = "NPK (20:20:20)"
 
         elif crop == "Maize":
-
-            recommendation = "Recommended: Urea + Compost"
+            recommendation = "Urea + Compost"
 
         else:
-
             recommendation = "No recommendation available."
 
     return render_template(
         "fertilizer.html",
         recommendation=recommendation
     )
-
-
 # ============================================================
 # WEATHER
 # ============================================================
@@ -433,20 +425,28 @@ def weather():
 @app.route("/crop_recommendation", methods=["GET", "POST"])
 def crop_recommendation():
     crop = None
+
     if request.method == "POST":
+
         soil = request.form["soil"]
         season = request.form["season"]
         ph = float(request.form["ph"])
+
         if soil == "Loamy" and season == "Kharif" and 6 <= ph <= 7:
-            crop = "🌾 Rice"
+            crop = "Rice"
+
         elif soil == "Black Soil" and season == "Kharif":
-            crop = "🌱 Cotton"
+            crop = "Cotton"
+
         elif soil == "Clay" and season == "Rabi":
-            crop = "🌾 Wheat"
+            crop = "Wheat"
+
         elif soil == "Sandy" and season == "Rabi":
-            crop = "🥜 Groundnut"
+            crop = "Groundnut"
+
         else:
-            crop = "🌽 Maize"
+            crop = "Maize"
+
     return render_template(
         "crop_recommendation.html",
         crop=crop
@@ -659,40 +659,53 @@ def uploaded_file(filename):
 # ----------------SOIL ANALYSIS-------------#
 @app.route("/soil", methods=["GET", "POST"])
 def soil():
+
     result = None
+
     if request.method == "POST":
+
         soil_type = request.form["soil_type"]
         ph = float(request.form["ph"])
         nitrogen = int(request.form["nitrogen"])
         phosphorus = int(request.form["phosphorus"])
         potassium = int(request.form["potassium"])
+
+        # Soil Health
         if 6 <= ph <= 7.5 and nitrogen >= 50 and phosphorus >= 40 and potassium >= 40:
-            health = "✅ Soil is Healthy"
+            health = "Soil is Healthy"
         else:
-            health = "⚠️ Soil Needs Improvement"
+            health = "Soil Needs Improvement"
+
+        # pH Status
         if ph < 6.5:
             ph_status = "Acidic Soil"
         elif ph <= 7.5:
             ph_status = "Neutral Soil"
         else:
             ph_status = "Alkaline Soil"
+
+        # Fertilizer Recommendation
         recommendation = []
+
         if nitrogen < 50:
             recommendation.append("Apply Urea Fertilizer.")
+
         if phosphorus < 40:
             recommendation.append("Apply DAP Fertilizer.")
+
         if potassium < 40:
             recommendation.append("Apply MOP Fertilizer.")
+
         if not recommendation:
-            recommendation.append(
-                "No fertilizer required."
-            )
+            recommendation.append("No fertilizer required.")
+
         result = {
             "soil_type": soil_type,
             "health": health,
             "ph_status": ph_status,
             "recommendation": recommendation
         }
+
     return render_template(
         "soil.html",
         result=result

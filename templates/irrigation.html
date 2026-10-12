@@ -7,7 +7,9 @@
 <div class="container mt-5">
 
     <h2 class="text-center text-primary mb-4">
-        💧 Irrigation Water Calculator
+        💧
+        <span class="lang-en">Irrigation Water Calculator</span>
+        <span class="lang-gu">સિંચાઈના પાણીનું કેલ્ક્યુલેટર</span>
     </h2>
 
     <div class="card shadow p-4">
@@ -15,33 +17,41 @@
         <form method="POST">
 
             <div class="mb-3">
-                <label class="form-label">Crop</label>
+                <label class="form-label">
+                    <span class="lang-en">Crop</span>
+                    <span class="lang-gu">પાક</span>
+                </label>
 
                 <select class="form-select" name="crop" required>
-                    <option value="">Select Crop</option>
-                    <option>Rice</option>
-                    <option>Wheat</option>
-                    <option>Cotton</option>
-                    <option>Maize</option>
-                    <option>Groundnut</option>
+                    <option value="">
+                        Select Crop / પાક પસંદ કરો
+                    </option>
+                    <option value="Rice">Rice / ડાંગર</option>
+                    <option value="Wheat">Wheat / ઘઉં</option>
+                    <option value="Cotton">Cotton / કપાસ</option>
+                    <option value="Maize">Maize / મકાઈ</option>
+                    <option value="Groundnut">Groundnut / મગફળી</option>
                 </select>
-
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Land Area (Acres)</label>
+                <label class="form-label">
+                    <span class="lang-en">Land Area (Acres)</span>
+                    <span class="lang-gu">જમીનનું ક્ષેત્રફળ (એકર)</span>
+                </label>
 
                 <input
                     type="number"
                     step="0.1"
+                    min="0.1"
                     class="form-control"
                     name="area"
                     required>
-
             </div>
 
-            <button class="btn btn-primary w-100">
-                Calculate Water Requirement
+            <button type="submit" class="btn btn-primary w-100">
+                <span class="lang-en">Calculate Water Requirement</span>
+                <span class="lang-gu">પાણીની જરૂરિયાત ગણો</span>
             </button>
 
         </form>
@@ -53,17 +63,50 @@
     <div class="card shadow mt-4">
 
         <div class="card-header bg-success text-white">
-            <h4>Calculation Result</h4>
+            <h4>
+                <span class="lang-en">Calculation Result</span>
+                <span class="lang-gu">ગણતરીનું પરિણામ</span>
+            </h4>
         </div>
 
         <div class="card-body">
 
-            <p><strong>Crop:</strong> {{ result.crop }}</p>
+            <p>
+                <strong>
+                    <span class="lang-en">Crop:</span>
+                    <span class="lang-gu">પાક:</span>
+                </strong>
+<span class="lang-en">{{ result.crop }}</span>
 
-            <p><strong>Land Area:</strong> {{ result.area }} Acres</p>
+<span class="lang-gu">
+    {% if result.crop == 'Rice' %}
+        ડાંગર
+    {% elif result.crop == 'Wheat' %}
+        ઘઉં
+    {% elif result.crop == 'Cotton' %}
+        કપાસ
+    {% elif result.crop == 'Maize' %}
+        મકાઈ
+    {% elif result.crop == 'Groundnut' %}
+        મગફળી
+    {% else %}
+        {{ result.crop }}
+    {% endif %}
+</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Land Area:</span>
+                    <span class="lang-gu">જમીનનું ક્ષેત્રફળ:</span>
+                </strong>
+                {{ result.area }} Acres
+            </p>
 
             <h4 class="text-primary">
-                💧 Estimated Water Requirement
+                💧
+                <span class="lang-en">Estimated Water Requirement</span>
+                <span class="lang-gu">અંદાજિત પાણીની જરૂરિયાત</span>
             </h4>
 
             <h2 class="text-success">
@@ -71,11 +114,7 @@
             </h2>
 
         </div>
-
     </div>
-
     {% endif %}
-
 </div>
-
 {% endblock %}

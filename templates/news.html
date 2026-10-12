@@ -1,4 +1,3 @@
-
 {% extends "base.html" %}
 
 {% block content %}
@@ -6,9 +5,9 @@
 <div class="container py-5">
 
     <h1 class="text-center text-success mb-5">
-        📰 Live Agriculture News
+        <span class="lang-en">📰 Live Agriculture News</span>
+        <span class="lang-gu">📰 ખેતીના તાજા સમાચાર</span>
     </h1>
-
 
     <div class="row">
 
@@ -19,16 +18,18 @@
             <div class="card shadow h-100">
 
                 {% if item.urlToImage %}
-                <img src="{{ item.urlToImage }}" 
+                <img src="{{ item.urlToImage }}"
                      class="card-img-top"
                      height="220"
-                     style="object-fit: cover;">
+                     style="object-fit: cover;"
+                     alt="Agriculture News">
                 {% else %}
                 <img src="https://via.placeholder.com/400x220?text=No+Image"
                      class="card-img-top"
-                     height="220">
+                     height="220"
+                     style="object-fit: cover;"
+                     alt="No Image">
                 {% endif %}
-
 
                 <div class="card-body">
 
@@ -36,14 +37,21 @@
                         {{ item.title }}
                     </h5>
 
-            <p class="card-text">
-                {{ item.description[:120] if item.description else "No description available." }}...
-            </p>
+                    <p class="card-text">
+                        {% if item.description %}
+                            {{ item.description[:120] }}...
+                        {% else %}
+                            <span class="lang-en">No description available.</span>
+                            <span class="lang-gu">વર્ણન ઉપલબ્ધ નથી.</span>
+                        {% endif %}
+                    </p>
 
-                    <a href="{{ item.url }}" 
+                    <a href="{{ item.url }}"
                        target="_blank"
+                       rel="noopener noreferrer"
                        class="btn btn-success">
-                        Read More
+                        <span class="lang-en">Read More</span>
+                        <span class="lang-gu">વધુ વાંચો</span>
                     </a>
 
                 </div>
@@ -52,8 +60,16 @@
 
         </div>
 
-        {% endfor %}
+        {% else %}
 
+        <div class="col-12 text-center">
+            <p class="text-muted">
+                <span class="lang-en">No news available right now. Please try again later.</span>
+                <span class="lang-gu">હાલમાં કોઈ સમાચાર ઉપલબ્ધ નથી. કૃપા કરીને પછીથી ફરી પ્રયાસ કરો.</span>
+            </p>
+        </div>
+
+        {% endfor %}
 
     </div>
 
