@@ -18,8 +18,7 @@ from werkzeug.utils import secure_filename
 from sqlalchemy import func
 from models import db, Farmer, Crop, Admin, Contact
 # ---------------- AI ---------------- #
-from ai.predict import predict_disease
-from ai.treatment import disease_info
+
 # ---------------- APP CONFIG ---------------- #
 app = Flask(__name__)
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
@@ -547,109 +546,7 @@ def disease():
         result=result
     )
 # ============================================================
-# AI LEAF DISEASE DETECTION
-# ============================================================
 
-@app.route("/disease_detection")
-def disease_detection():
-    return render_template("disease_detection.html")
-
-
-@app.route("/predict", methods=["POST"])
-def predict():
-
-    if "leaf_image" not in request.files:
-        return "No image uploaded."
-
-    file = request.files["leaf_image"]
-
-    if file.filename == "":
-        return "Please select an image."
-
-    filename = secure_filename(file.filename)
-    
-
-    filepath = os.path.join(
-        app.config["UPLOAD_FOLDER"],
-        filename
-    )
-
-    file.save(filepath)
-
-    try:
-
-        prediction = predict_disease(filepath)
-
-        disease = prediction["disease"]
-
-        confidence = prediction["confidence"]
-
-    except Exception as e:
-
-        return f"Prediction Error: {e}"
-
-    info = disease_info.get(
-
-        disease,
-
-        {
-            "treatment": "No treatment available.",
-            "prevention": "Keep monitoring the crop."
-        }
-    )
-    return render_template(
-    "disease_result.html",
-    disease=disease,
-    confidence=confidence,
-    treatment=info["treatment"],
-    prevention=info["prevention"],
-    image=filename
-)
-@app.route("/download_report")
-def download_report():
-
-    disease = request.args.get("disease")
-    confidence = request.args.get("confidence")
-    treatment = request.args.get("treatment")
-    prevention = request.args.get("prevention")
-
-    pdf_file = os.path.join(
-        BASE_DIR,
-        "disease_report.pdf"
-    )
-
-    doc = SimpleDocTemplate(pdf_file)
-
-    styles = getSampleStyleSheet()
-
-    story = []
-
-    story.append(Paragraph("<b>Smart Agriculture Management System</b>", styles["Title"]))
-
-    story.append(Paragraph("<br/>", styles["Normal"]))
-
-    story.append(Paragraph(f"<b>Disease:</b> {disease}", styles["Heading2"]))
-
-    story.append(Paragraph(f"<b>Confidence:</b> {confidence}%", styles["Normal"]))
-
-    story.append(Paragraph("<br/>", styles["Normal"]))
-
-    story.append(Paragraph("<b>Treatment</b>", styles["Heading2"]))
-
-    story.append(Paragraph(treatment, styles["Normal"]))
-
-    story.append(Paragraph("<br/>", styles["Normal"]))
-
-    story.append(Paragraph("<b>Prevention</b>", styles["Heading2"]))
-
-    story.append(Paragraph(prevention, styles["Normal"]))
-
-    doc.build(story)
-
-    return send_file(
-        pdf_file,
-        as_attachment=True
-    )
 @app.route("/uploads/<filename>")
 def uploaded_file(filename):
     return send_from_directory(
