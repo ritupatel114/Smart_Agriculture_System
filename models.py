@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 
+
 # ---------------- FARMER MODEL ---------------- #
 
 class Farmer(db.Model):
@@ -14,11 +15,11 @@ class Farmer(db.Model):
     mobile = db.Column(db.String(15), nullable=False)
     land = db.Column(db.Float, nullable=False)
 
-    # Relationship with Crop
     crops = db.relationship(
         "Crop",
         backref="farmer",
-        lazy=True
+        lazy=True,
+        cascade="all, delete-orphan"
     )
 
     def __repr__(self):
