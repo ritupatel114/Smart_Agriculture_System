@@ -16,8 +16,9 @@ from flask import (
     session
 )
 from werkzeug.utils import secure_filename
+from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import func
-from models import db, Farmer, Crop, Admin, Contact
+from models import db, Farmer, Crop, Admin, Contact, User
 # ---------------- AI ---------------- #
 
 # ---------------- APP CONFIG ---------------- #
@@ -147,30 +148,33 @@ def dashboard():
 
 @app.route("/api/dashboard", methods=["GET"])
 def api_dashboard():
-    auth_header = request.headers.get("Authorization", "")
+    user = get_api_user()
 
-    if not auth_header.startswith("Bearer "):
-        return jsonify({"error": "Unauthorized"}), 401
+    if not user:
+        return jsonify({
+            "success": False,
+            "message": "Unauthorized"
+        }), 401
 
-    token = auth_header.split(" ", 1)[1].strip()
+    total_farmers = Farmer.query.filter_by(user_id=user.id).count()
 
-    try:
-        payload = api_token_serializer.loads(token, max_age=86400)
-    except (SignatureExpired, BadSignature):
-        return jsonify({"error": "Invalid or expired token"}), 401
+    total_crops = (
+        Crop.query.join(Farmer)
+        .filter(Farmer.user_id == user.id)
+        .count()
+    )
 
-    if payload.get("username") != "admin":
-        return jsonify({"error": "Unauthorized"}), 401
-
-    total_land = db.session.query(
-        db.func.coalesce(db.func.sum(Farmer.land), 0)
-    ).scalar()
+    total_land = (
+        db.session.query(func.sum(Farmer.land))
+        .filter(Farmer.user_id == user.id)
+        .scalar() or 0
+    )
 
     return jsonify({
-        "total_farmers": Farmer.query.count(),
-        "total_crops": Crop.query.count(),
-        "total_land": float(total_land or 0),
-        "total_contacts": Contact.query.count()
+        "success": True,
+        "total_farmers": total_farmers,
+        "total_crops": total_crops,
+        "total_land": total_land
     })
 
 # ============================================================
@@ -318,6 +322,54 @@ def farmer_details(id):
         "farmer_details.html",
         farmer=farmer
     )
+
+@app.route("/api/register", methods=["POST"])
+def api_register():
+    data = request.get_json(silent=True) or {}
+
+    username = str(data.get("username", "")).strip()
+    email = str(data.get("email", "")).strip().lower()
+    password = str(data.get("password", ""))
+
+    if not username or not email or not password:
+        return jsonify({
+            "success": False,
+            "message": "All fields are required"
+        }), 400
+
+    if len(password) < 6:
+        return jsonify({
+            "success": False,
+            "message": "Password must be at least 6 characters"
+        }), 400
+
+    if User.query.filter_by(username=username).first():
+        return jsonify({
+            "success": False,
+            "message": "Username already exists"
+        }), 409
+
+    if User.query.filter_by(email=email).first():
+        return jsonify({
+            "success": False,
+            "message": "Email already registered"
+        }), 409
+
+    new_user = User(
+        username=username,
+        email=email,
+        password=generate_password_hash(password)
+    )
+
+    db.session.add(new_user)
+    db.session.commit()
+
+    return jsonify({
+        "success": True,
+        "message": "Registration successful"
+    }), 201
+
+
 @app.route("/api/login", methods=["POST"])
 def api_login():
     data = request.get_json(silent=True) or {}
@@ -325,11 +377,18 @@ def api_login():
     username = str(data.get("username", "")).strip()
     password = str(data.get("password", ""))
 
-    if username == "admin" and password == "admin123":
-        token = api_token_serializer.dumps({"username": username})
+    user = User.query.filter_by(username=username).first()
+
+    if user and check_password_hash(user.password, password):
+        token = api_token_serializer.dumps({
+            "user_id": user.id,
+            "username": user.username
+        })
+
         return jsonify({
             "success": True,
-            "token": token
+            "token": token,
+            "username": user.username
         })
 
     return jsonify({
@@ -337,132 +396,106 @@ def api_login():
         "message": "Invalid username or password"
     }), 401
 
-
-
-@app.route("/api/farmers", methods=["GET", "POST"])
-def api_farmers():
+def get_api_user():
     auth_header = request.headers.get("Authorization", "")
 
     if not auth_header.startswith("Bearer "):
-        return jsonify({"error": "Unauthorized"}), 401
+        return None
 
-    token = auth_header.split(" ", 1)[1].strip()
-
-    try:
-        payload = api_token_serializer.loads(
-            token,
-            max_age=86400
-        )
-    except (SignatureExpired, BadSignature):
-        return jsonify({"error": "Invalid or expired token"}), 401
-
-    if payload.get("username") != "admin":
-        return jsonify({"error": "Unauthorized"}), 401
-
-    if request.method == "POST":
-        data = request.get_json(silent=True) or {}
-
-        name = str(data.get("name", "")).strip()
-        village = str(data.get("village", "")).strip()
-        mobile = str(data.get("mobile", "")).strip()
-
-        try:
-            land = float(data.get("land"))
-            if land <= 0:
-                raise ValueError()
-        except (ValueError, TypeError):
-            return jsonify({
-                "success": False,
-                "message": "Land must be a positive number"
-            }), 400
-
-        if not name or not village or not mobile:
-            return jsonify({
-                "success": False,
-                "message": "All fields are required"
-            }), 400
-
-        farmer = Farmer(
-            name=name,
-            village=village,
-            mobile=mobile,
-            land=land
-        )
-
-        db.session.add(farmer)
-        db.session.commit()
-
-        return jsonify({
-            "success": True,
-            "message": "Farmer added successfully",
-            "id": farmer.id
-        }), 201
-
-    all_farmers = Farmer.query.all()
-
-    return jsonify([
-        {
-            "id": f.id,
-            "name": f.name,
-            "village": f.village,
-            "mobile": f.mobile,
-            "land": f.land
-        }
-        for f in all_farmers
-    ])
-
-@app.route("/api/farmers/<int:farmer_id>", methods=["PUT", "DELETE"])
-def api_farmer_detail(farmer_id):
-    auth_header = request.headers.get("Authorization", "")
-
-    if not auth_header.startswith("Bearer "):
-        return jsonify({"error": "Unauthorized"}), 401
-
-    token = auth_header.split(" ", 1)[1].strip()
+    token = auth_header.split(" ", 1)[1]
 
     try:
         payload = api_token_serializer.loads(token, max_age=86400)
+        return User.query.get(payload.get("user_id"))
     except (SignatureExpired, BadSignature):
-        return jsonify({"error": "Invalid or expired token"}), 401
+        return None
 
-    if payload.get("username") != "admin":
-        return jsonify({"error": "Unauthorized"}), 401
+@app.route("/api/farmers", methods=["GET", "POST"])
+def api_farmers():
+    user = get_api_user()
 
-    farmer = db.session.get(Farmer, farmer_id)
+    if not user:
+        return jsonify({
+            "success": False,
+            "message": "Unauthorized"
+        }), 401
 
-    if farmer is None:
-        return jsonify({"error": "Farmer not found"}), 404
+    if request.method == "GET":
+        farmers = Farmer.query.filter_by(user_id=user.id).all()
+
+        return jsonify([
+            {
+                "id": f.id,
+                "name": f.name,
+                "village": f.village,
+                "mobile": f.mobile,
+                "land": f.land
+            }
+            for f in farmers
+        ])
+
+    data = request.get_json(silent=True) or {}
+
+    farmer = Farmer(
+        name=data.get("name"),
+        village=data.get("village"),
+        mobile=data.get("mobile"),
+        land=data.get("land"),
+        user_id=user.id
+    )
+
+    db.session.add(farmer)
+    db.session.commit()
+
+    return jsonify({
+        "success": True,
+        "message": "Farmer added successfully",
+        "id": farmer.id
+    }), 201
+
+@app.route("/api/farmers/<int:farmer_id>", methods=["PUT", "DELETE"])
+def api_farmer_detail(farmer_id):
+    user = get_api_user()
+
+    if not user:
+        return jsonify({
+            "success": False,
+            "message": "Unauthorized"
+        }), 401
+
+    farmer = Farmer.query.filter_by(
+        id=farmer_id,
+        user_id=user.id
+    ).first()
+
+    if not farmer:
+        return jsonify({
+            "success": False,
+            "message": "Farmer not found"
+        }), 404
 
     if request.method == "DELETE":
         db.session.delete(farmer)
         db.session.commit()
-        return jsonify({"success": True, "message": "Farmer deleted"})
+
+        return jsonify({
+            "success": True,
+            "message": "Farmer deleted successfully"
+        })
 
     data = request.get_json(silent=True) or {}
 
-    name = str(data.get("name", "")).strip()
-    village = str(data.get("village", "")).strip()
-    mobile = str(data.get("mobile", "")).strip()
-
-    try:
-        land = float(data.get("land"))
-        if land <= 0:
-            raise ValueError()
-    except (ValueError, TypeError):
-        return jsonify({"error": "Land must be a positive number"}), 400
-
-    if not name or not village or not mobile:
-        return jsonify({"error": "All fields are required"}), 400
-
-    farmer.name = name
-    farmer.village = village
-    farmer.mobile = mobile
-    farmer.land = land
+    farmer.name = data.get("name", farmer.name)
+    farmer.village = data.get("village", farmer.village)
+    farmer.mobile = data.get("mobile", farmer.mobile)
+    farmer.land = data.get("land", farmer.land)
 
     db.session.commit()
 
-    return jsonify({"success": True, "message": "Farmer updated"})
-
+    return jsonify({
+        "success": True,
+        "message": "Farmer updated successfully"
+    })
 
 
 # ============================================================

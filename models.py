@@ -3,6 +3,18 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 
+# ---------------- USER MODEL ---------------- #
+
+class User(db.Model):
+    __tablename__ = "users"
+
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(100), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(255), nullable=False)
+
+    farmers = db.relationship("Farmer", backref="user", lazy=True)
+
 
 # ---------------- FARMER MODEL ---------------- #
 
@@ -14,6 +26,11 @@ class Farmer(db.Model):
     village = db.Column(db.String(100), nullable=False)
     mobile = db.Column(db.String(15), nullable=False)
     land = db.Column(db.Float, nullable=False)
+    user_id = db.Column(
+    db.Integer,
+    db.ForeignKey("users.id"),
+    nullable=True
+)
 
     crops = db.relationship(
         "Crop",
