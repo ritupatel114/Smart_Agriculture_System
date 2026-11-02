@@ -17,7 +17,7 @@ from flask import (
 )
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
-from sqlalchemy import func
+from sqlalchemy import func, inspect, text
 from models import db, Farmer, Crop, Admin, Contact, User
 # ---------------- AI ---------------- #
 
@@ -36,6 +36,23 @@ api_token_serializer = URLSafeTimedSerializer(
     salt="smart-agriculture-api"
 )
 db.init_app(app)
+
+# -------- DATABASE INITIALIZATION & MIGRATION -------- #
+with app.app_context():
+    db.create_all()
+
+    inspector = inspect(db.engine)
+    farmer_columns = [
+        column["name"]
+        for column in inspector.get_columns("farmers")
+    ]
+
+    if "user_id" not in farmer_columns:
+        with db.engine.begin() as connection:
+            connection.execute(text(
+                "ALTER TABLE farmers ADD COLUMN user_id "
+                "INTEGER REFERENCES users(id)"
+            ))
 # ============================================================
 # HOME
 # ============================================================
