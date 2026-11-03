@@ -1,5 +1,6 @@
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadSignature
 import os
+import hmac
 from flask import send_from_directory
 from flask import send_file
 from reportlab.platypus import SimpleDocTemplate, Paragraph
@@ -37,22 +38,6 @@ api_token_serializer = URLSafeTimedSerializer(
 )
 db.init_app(app)
 
-# -------- DATABASE INITIALIZATION & MIGRATION -------- #
-with app.app_context():
-    db.create_all()
-
-    inspector = inspect(db.engine)
-    farmer_columns = [
-        column["name"]
-        for column in inspector.get_columns("farmers")
-    ]
-
-    if "user_id" not in farmer_columns:
-        with db.engine.begin() as connection:
-            connection.execute(text(
-                "ALTER TABLE farmers ADD COLUMN user_id "
-                "INTEGER REFERENCES users(id)"
-            ))
 # ============================================================
 # HOME
 # ============================================================
@@ -426,6 +411,36 @@ def get_api_user():
         return User.query.get(payload.get("user_id"))
     except (SignatureExpired, BadSignature):
         return None
+
+
+@app.route("/api/reset-password", methods=["POST"])
+def reset_password():
+    data = request.get_json(silent=True) or {}
+
+    username = str(data.get("username", "")).strip()
+    email = str(data.get("email", "")).strip().lower()
+    new_password = str(data.get("new_password", ""))
+    reset_secret = str(data.get("reset_secret", ""))
+
+    saved_secret = os.environ.get("PASSWORD_RESET_SECRET", "")
+
+    if not saved_secret or not hmac.compare_digest(reset_secret, saved_secret):
+        return jsonify({"success": False, "message": "Unauthorized"}), 403
+
+    if username != "prakriti" or len(new_password) < 6:
+        return jsonify({"success": False, "message": "Invalid details"}), 400
+
+    user = User.query.filter_by(username=username, email=email).first()
+
+    if not user:
+        return jsonify({"success": False, "message": "Account not found"}), 404
+
+    user.password = generate_password_hash(new_password)
+    db.session.commit()
+
+    return jsonify({"success": True, "message": "Password updated"})
+
+
 
 @app.route("/api/farmers", methods=["GET", "POST"])
 def api_farmers():
