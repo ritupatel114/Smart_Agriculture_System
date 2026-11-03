@@ -894,33 +894,6 @@ def contact():
 def page_not_found(error):
     return render_template("404.html"), 404
 
-@app.route("/api/reset-password", methods=["POST"])
-def reset_password():
-    data = request.get_json(silent=True) or {}
-
-    username = str(data.get("username", "")).strip()
-    email = str(data.get("email", "")).strip().lower()
-    new_password = str(data.get("new_password", ""))
-    reset_secret = str(data.get("reset_secret", ""))
-
-    saved_secret = os.environ.get("PASSWORD_RESET_SECRET", "")
-
-    if not saved_secret or not hmac.compare_digest(reset_secret, saved_secret):
-        return jsonify({"success": False, "message": "Unauthorized"}), 403
-
-    if username != "prakriti" or len(new_password) < 6:
-        return jsonify({"success": False, "message": "Invalid details"}), 400
-
-    user = User.query.filter_by(username=username, email=email).first()
-
-    if not user:
-        return jsonify({"success": False, "message": "Account not found"}), 404
-
-    user.password = generate_password_hash(new_password)
-    db.session.commit()
-
-    return jsonify({"success": True, "message": "Password updated"})
-
 # --------------MAIN--------------#
 if __name__ == "__main__":
     with app.app_context():
