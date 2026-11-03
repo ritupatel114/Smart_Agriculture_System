@@ -442,6 +442,8 @@ def reset_password():
 
     saved_secret = os.environ.get("PASSWORD_RESET_SECRET", "")
 
+    print("RESET SECRET CONFIGURED:", bool(saved_secret))
+
     if not saved_secret or not hmac.compare_digest(reset_secret, saved_secret):
         return jsonify({"success": False, "message": "Unauthorized"}), 403
 
