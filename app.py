@@ -442,6 +442,8 @@ def reset_password():
 
     saved_secret = os.environ.get("PASSWORD_RESET_SECRET", "")
 
+    print("RESET INPUT LENGTH:", len(reset_secret))
+    print("RESET SAVED LENGTH:", len(saved_secret))
     print("RESET SECRET CONFIGURED:", bool(saved_secret))
 
     if not saved_secret or not hmac.compare_digest(reset_secret, saved_secret):
