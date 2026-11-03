@@ -38,6 +38,24 @@ api_token_serializer = URLSafeTimedSerializer(
 )
 db.init_app(app)
 
+# DATABASE INITIALIZATION & MIGRATION
+with app.app_context():
+    db.create_all()
+
+    inspector = inspect(db.engine)
+
+    farmer_columns = [
+        column["name"]
+        for column in inspector.get_columns("farmers")
+    ]
+
+    if "user_id" not in farmer_columns:
+        with db.engine.begin() as connection:
+            connection.execute(text(
+                "ALTER TABLE farmers ADD COLUMN user_id INTEGER REFERENCES users(id)"
+            ))
+
+
 # ============================================================
 # HOME
 # ============================================================
